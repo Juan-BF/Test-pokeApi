@@ -1,18 +1,60 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+
+async function InfPokemon() {
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon?offset=20&limit=3');
+    const poke = await response.json();
+    return poke.results;
+}
+
+async function Pokeondet(pokeName) {
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}/`);
+    return await response.json();
+}
+
+const Pokemon1 = () =>{
+    const [poke, setPoke] = useState({
+        pokedex:[]
+    });
+
+
+    useEffect(() =>{
+        const fetchData = async () =>{
+            const pokeResult = await InfPokemon()
+            const pokeDetails = await Promise.all(pokeResult.map(async result =>{
+                const detail = await Pokeondet(result.name)
+                return detail
+            }));
+
+            setPoke({
+                pokedex : pokeDetails
+            })
+        }
+
+        fetchData()
+    },[])
+
+    return(
+        <section>
+            <ul>
+                {poke.pokedex.map((namePokemon, index) =>{
+                    return(
+
+                        <li key={index}>
+                        <img src={namePokemon.sprites.front_default} alt={`Pokemon ${namePokemon.name}`} />
+
+                    </li>
+                        )
+                })}
+                
+            </ul>
+        </section>
+    )
 
 
 
-async function InfPokemon(){
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon?offset=20&limit=30')
-    const poke = await response.json()
-    console.log(poke)
-    console.log(poke.results)
+
 }
 
 
-const Pokemeon = () =>{
-    
-    InfPokemon()
-}
 
-export default Pokemeon
+export default Pokemon1;

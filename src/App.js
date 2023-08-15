@@ -1,11 +1,11 @@
 import './App.css';
-import Pokemeon from './component/pokedex/pokedex'
+import Pokemon1 from './component/pokedex/pokedex'
 
 function App() {
   return (
     
     <div>
-      <Pokemeon></Pokemeon>
+      <Pokemon1/>
     </div>
     
     
