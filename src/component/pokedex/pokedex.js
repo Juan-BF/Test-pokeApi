@@ -40,7 +40,7 @@ const Pokemon1 = () =>{
                     return(
 
                         <li key={index}>
-                        <img src={namePokemon.sprites.front_default} alt={`Pokemon ${namePokemon.name}`} />
+                        <img src={namePokemon.sprites.front_default} alt={`Pokemooon ${namePokemon.name}`} />
 
                     </li>
                         )
