@@ -11,6 +11,8 @@ async function Pokeondet(pokeName) {
     return await response.json();
 }
 
+
+
 const Pokemon1 = () =>{
     const [poke, setPoke] = useState({
         pokedex:[]
@@ -26,7 +28,7 @@ const Pokemon1 = () =>{
             }));
 
             setPoke({
-                pokedex : pokeDetails
+                pokedex : pokeDetail
             })
         }
 
