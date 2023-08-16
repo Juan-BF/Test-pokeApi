@@ -11,39 +11,50 @@ async function Pokeondet(pokeName) {
     return await response.json();
 }
 
-const Pokemeon = () => {
-    const [idpoke, setPoke] = useState({
-        pokede: []
+const Pokemon1 = () =>{
+    const [poke, setPoke] = useState({
+        pokedex:[]
     });
-    
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const pokeResults = await InfPokemon();
-            const pokemonDetails = await Promise.all(pokeResults.map(async result => {
-                const detail = await Pokeondet(result.name);
-                return detail;
+
+    useEffect(() =>{
+        const fetchData = async () =>{
+            const pokeResult = await InfPokemon()
+            const pokeDetails = await Promise.all(pokeResult.map(async result =>{
+                const detail = await Pokeondet(result.name)
+                return detail
             }));
-            setPoke({
-                pokede: pokemonDetails
-            });
-        };
-        fetchData();
-    }, []);
 
-    
-    return (
+            setPoke({
+                pokedex : pokeDetails
+            })
+        }
+
+        fetchData()
+    },[])
+
+    return(
         <section>
             <ul>
-                {idpoke.pokede.map((pokemon, index) => (
-                    <li key={index}>
-                        <img src={pokemon.sprites.front_default} alt={`Pokemon ${pokemon.name}`} />
-                        <p>{pokemon.name}</p>
+                {poke.pokedex.map((namePokemon, index) =>{
+                    return(
+
+                        <li key={index}>
+                        <img src={namePokemon.sprites.front_default} alt={`Pokemooon ${namePokemon.name}`} />
+
                     </li>
-                ))}
+                        )
+                })}
+                
             </ul>
         </section>
-    );
+    )
+
+
+
+
 }
 
-export default Pokemeon;
+
+
+export default Pokemon1;

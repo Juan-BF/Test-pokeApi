@@ -1,60 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React,  { useEffect, useState } from "react"
 
-async function InfPokemon() {
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon?offset=20&limit=3');
-    const poke = await response.json();
-    return poke.results;
+
+async function PokemonApi(){
+    const response = await fetch('https://pokeapi.co/api/v2/pokemon?offset=20&limit=3')
+    const poke = await response.json()
+    return poke.results
+}
+async function PokemonNameApi(pokeName){
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}/`)
+    return await response.json()
 }
 
-async function Pokeondet(pokeName) {
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}/`);
-    return await response.json();
-}
+const PokemonData = () =>{
 
-const Pokemon1 = () =>{
-    const [poke, setPoke] = useState({
-        pokedex:[]
-    });
-
+    const [ PokeInf, setPokeInf ] = useState({
+        namePokemon:[]
+    })
+    // console.log(namepokemon)
 
     useEffect(() =>{
-        const fetchData = async () =>{
-            const pokeResult = await InfPokemon()
-            const pokeDetails = await Promise.all(pokeResult.map(async result =>{
-                const detail = await Pokeondet(result.name)
-                return detail
-            }));
-
-            setPoke({
-                pokedex : pokeDetails
+        const fetData = async () =>{
+            const pokemonDataApi = await PokemonApi()
+            console.log(pokemonDataApi)
+            const pokemonDetailApi = await Promise.all(pokemonDataApi.map(async result =>{
+                const details = await PokemonNameApi(result.name)
+                console.log(details)
+            }))
+            setPokeInf({
+                namePokemon: pokemonDetailApi
             })
         }
-
-        fetchData()
-    },[])
-
-    return(
-        <section>
-            <ul>
-                {poke.pokedex.map((namePokemon, index) =>{
-                    return(
-
-                        <li key={index}>
-                        <img src={namePokemon.sprites.front_default} alt={`Pokemooon ${namePokemon.name}`} />
-
-                    </li>
-                        )
-                })}
-                
-            </ul>
-        </section>
-    )
-
-
+        fetData()
+    }, [])
 
 
 }
 
 
-
-export default Pokemon1;
+export default PokemonData
