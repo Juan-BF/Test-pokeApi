@@ -56,7 +56,7 @@ const PokemonData = () =>{
                         <div key={index}>
                            <li>
                         <Link to={`/${pokemon.name}`}>
-                        <img src={pokemon.sprites.front_default} alt={`Pokemooon ${pokemon.name}`} />                          
+                        <img src={pokemon.sprites.front_default} alt={`Pokemon ${pokemon.name}`} />                          
                         </Link>
                         <p>{pokemon.name}</p>
                         </li>
