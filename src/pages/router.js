@@ -9,7 +9,7 @@ const AppRoutes = () =>{
         <Routes>
             <Route exact path='/' element={<Posts/>}/>
             <Route exact path='/' element={<Posts/>}/>
-            <Route path="/:pokemonName/Home" element={<PokemonDetail />} />
+            <Route path="/:pokemonName" element={<PokemonDetail />} />
         </Routes>
     </BrowserRouter>
         )

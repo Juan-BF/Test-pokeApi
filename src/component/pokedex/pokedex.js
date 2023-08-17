@@ -31,7 +31,7 @@ const PokemonData = () =>{
             const pokeDato = await PokeApi()
             const pokedexData = await Promise.all(pokeDato.map(async result =>{
                 const resultPoke = await PokedexApi(result.name)
-                // console.log(resultPoke.moves)
+                // console.log(resultPoke.url)
                 return resultPoke
             }))
         
@@ -47,20 +47,15 @@ const PokemonData = () =>{
 
 
 
-
     return(
         <div>
-        
             <section>
-            
             <ul>
                 {pokemon.pokemonDato.map((pokemon, index) =>{
                     return(
-                        
-                        <div>
-                            
-                        <li key={index}>
-                        <Link to={`/${pokemon.name}/Home`}>
+                        <div key={index}>
+                           <li>
+                        <Link to={`/${pokemon.name}`}>
                         <img src={pokemon.sprites.front_default} alt={`Pokemooon ${pokemon.name}`} />                          
                         </Link>
                         <p>{pokemon.name}</p>
