@@ -1,24 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from "react";
+import { PokeApi } from "../pokedex/pokedex";
+import { PokedexApi } from "../pokedex/pokedex";
+import { PokemonData } from "../pokedex/pokedex";
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 
-
-
-async function PokeApi(){
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon?offset=20&limit=3')
-    const responseApi = await response.json()
-    return responseApi.results
-        
-}
-
-async function PokedexApi(pokeName){
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}/`)
-    return response.json()
-}
-
-
-
-
-const PokemonData = () =>{
+const Home = () => {
 
     const [ pokemon, setPokemon ] =useState({
         pokemonDato:[],
@@ -47,20 +34,15 @@ const PokemonData = () =>{
 
 
 
-
-    return(
-        <div>
-        
-            <section>
-            
-            <ul>
+  return (
+    <section>
+      <ul>
                 {pokemon.pokemonDato.map((pokemon, index) =>{
                     return(
-                        
                         <div>
-                            
+
                         <li key={index}>
-                        <Link to={`/${pokemon.name}/Home`}>
+                        <Link to={`/`}>
                         <img src={pokemon.sprites.front_default} alt={`Pokemooon ${pokemon.name}`} />                          
                         </Link>
                         <p>{pokemon.name}</p>
@@ -69,23 +51,17 @@ const PokemonData = () =>{
                     )
                 })}
             </ul>
-            
-            </section>
-            
-        </div>
-        
-
-        
-    )
+      <div>
+      <Link to={`/`}>
+      <h1> ----ir a inicio</h1>
+         </Link>
+         
 
 
-}
+      </div>
+      
+    </section>
+  );
+};
 
-
-
-
-
-
-
-
-export { PokemonData, PokedexApi, PokeApi}
+export { Home }

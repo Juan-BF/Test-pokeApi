@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 
 async function InfPokemon() {
     const response = await fetch('https://pokeapi.co/api/v2/pokemon?offset=20&limit=30');
