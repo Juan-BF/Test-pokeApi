@@ -3,23 +3,6 @@ import { Link } from 'react-router-dom'
 import { PokeApi } from '../service/pokeapi'
 import { PokedexApi } from '../service/pokedetailsapi'
 
-// PokeApi()
-
-
-// async function PokeApi(){
-//     const response = await fetch('https://pokeapi.co/api/v2/pokemon?offset=20&limit=3')
-//     const responseApi = await response.json()
-//     return responseApi.results
-        
-// }
-
-// async function PokedexApi(pokeName){
-//     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}/`)
-//     return response.json()
-// }
-
-
-
 
 const PokemonData = () =>{
 
@@ -27,14 +10,24 @@ const PokemonData = () =>{
         pokemonDato:[],
         
     })
+    const [quantity, setQuantity] = useState(10);
+
+  const seeMore = () => {
+    setQuantity(quantity + 1);
     
+  };
+  const showLess = () =>{
+    setQuantity(quantity - 1);
+}
+ 
+      
 
     useEffect(() =>{
         const fetDato = async () =>{
-            const pokeDato = await PokeApi()
+            const pokeDato = await PokeApi(quantity)
+            console.log(pokeDato)
             const pokedexData = await Promise.all(pokeDato.map(async result =>{
                 const resultPoke = await PokedexApi(result.name)
-                // console.log(resultPoke.url)
                 return resultPoke
             }))
         
@@ -45,15 +38,20 @@ const PokemonData = () =>{
         }
 
         fetDato()
-
-    }, [])
-
+        
 
 
+    },[quantity] )
+   
+  
     return(
         <div>
             <section>
+            
             <ul>
+            <button type="submit" onClick={seeMore}>agregar 10</button>
+            <br></br>
+            <button type="submit" onClick={showLess}>quitar 10</button>
                 {pokemon.pokemonDato.map((pokemon, index) =>{
                     return(
                         <div key={index}>
@@ -62,7 +60,9 @@ const PokemonData = () =>{
                         <img src={pokemon.sprites.front_default} alt={`Pokemon ${pokemon.name}`} />                          
                         </Link>
                         <p>{pokemon.name}</p>
+                        
                         </li>
+                        
                         </div>
                     )
                 })}
