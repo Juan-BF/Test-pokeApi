@@ -12,7 +12,6 @@ const PokemonDetail = () => {
     useEffect(() =>{
         const fetchPokemon = async () =>{
             const result = await PokedexApi(pokemonName)
-            // console.log(result.sprites.front_default)
             const results = (result.sprites.front_default)
             setpokemonInf(results)
         }

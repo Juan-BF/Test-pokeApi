@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { PokeApi } from '../service/pokeapi'
+import { PokedexApi } from '../service/pokedetailsapi'
 
-
-PokeApi()
+// PokeApi()
 
 
 // async function PokeApi(){
@@ -13,10 +13,10 @@ PokeApi()
         
 // }
 
-async function PokedexApi(pokeName){
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}/`)
-    return response.json()
-}
+// async function PokedexApi(pokeName){
+//     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}/`)
+//     return response.json()
+// }
 
 
 
