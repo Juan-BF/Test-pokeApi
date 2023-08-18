@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { PokeApi } from '../service/pokeapi'
 
 
+PokeApi()
 
-async function PokeApi(){
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon?offset=20&limit=3')
-    const responseApi = await response.json()
-    return responseApi.results
+
+// async function PokeApi(){
+//     const response = await fetch('https://pokeapi.co/api/v2/pokemon?offset=20&limit=3')
+//     const responseApi = await response.json()
+//     return responseApi.results
         
-}
+// }
 
 async function PokedexApi(pokeName){
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}/`)

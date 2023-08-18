@@ -1,13 +1,12 @@
 import './App.css';
-// import PokemonData from './component/pokedex/pokedex'
-import AppRoutes from './pages/router';
+
+import AppRoutes from './component/pokemon/pages/router';
 
 function App() {
   return (
     
     <div>
    <AppRoutes/>
-      {/* // <PokemonData/> */}
     </div>
     
     

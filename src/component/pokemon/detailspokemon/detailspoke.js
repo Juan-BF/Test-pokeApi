@@ -27,9 +27,9 @@ const PokemonDetail = () => {
         
       
       <h2>Detalles de {pokemonName}</h2>
-   
+      <Link  to={`/`}> Regresar </Link>
     </div>
   );
 };
 
-export default PokemonDetail;
+export { PokemonDetail }
