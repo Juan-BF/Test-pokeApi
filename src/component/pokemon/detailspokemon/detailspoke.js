@@ -1,19 +1,26 @@
 import { useParams } from "react-router-dom";
-import { PokedexApi } from "../pokedex/pokedex";
+import { PokedexApi } from "../PokemonList/pokemonlist";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const PokemonDetail = () => {
   const { pokemonName } = useParams();
 
-  const [pokemonInf, setpokemonInf] = useState() 
+  const [pokemonInf, setpokemonInf] = useState({
+        pokemonImg:''
+        
+  }) 
 
 
     useEffect(() =>{
         const fetchPokemon = async () =>{
             const result = await PokedexApi(pokemonName)
-            const results = (result.sprites.front_default)
-            setpokemonInf(results)
+            const img = (result.sprites.front_default)
+            // const movimientos = (result.moves)
+            // console.log(result.moves)
+            setpokemonInf({
+              pokemonImg:img
+            })
         }
         fetchPokemon()
         
@@ -22,10 +29,11 @@ const PokemonDetail = () => {
     
   return (
     <div>
-        {<img src={pokemonInf}/>}
+        {<img src={pokemonInf.pokemonImg}/>}
         
       
       <h2>Detalles de {pokemonName}</h2>
+      {/* <p>{movimientos}</p> */}
       <Link  to={`/`}> Regresar </Link>
     </div>
   );

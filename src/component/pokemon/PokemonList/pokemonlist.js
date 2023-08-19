@@ -13,11 +13,11 @@ const PokemonData = () =>{
     const [quantity, setQuantity] = useState(10);
 
   const seeMore = () => {
-    setQuantity(quantity + 1);
+    setQuantity(quantity < 1200 ? quantity + 10 : quantity );
     
   };
   const showLess = () =>{
-    setQuantity(quantity - 1);
+    setQuantity(quantity > 10 ? quantity - 10 : quantity );
 }
  
       
@@ -27,6 +27,9 @@ const PokemonData = () =>{
             const pokeDato = await PokeApi(quantity)
             console.log(pokeDato)
             const pokedexData = await Promise.all(pokeDato.map(async result =>{
+                
+
+
                 const resultPoke = await PokedexApi(result.name)
                 return resultPoke
             }))
