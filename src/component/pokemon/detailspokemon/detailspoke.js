@@ -7,19 +7,25 @@ const PokemonDetail = () => {
   const { pokemonName } = useParams();
 
   const [pokemonInf, setpokemonInf] = useState({
-        pokemonImg:''
-        
+        pokemonImg:'',
+        pokemonMov:[]
   }) 
 
 
     useEffect(() =>{
         const fetchPokemon = async () =>{
             const result = await PokedexApi(pokemonName)
+            const detail = (result.moves)
+            const details = await Promise.all(detail.map(async result =>{
+              const resuldet = await (result.move.name)
+              return resuldet
+              
+            }))
             const img = (result.sprites.front_default)
-            // const movimientos = (result.moves)
-            // console.log(result.moves)
+
             setpokemonInf({
-              pokemonImg:img
+              pokemonImg : img,
+              pokemonMov : details
             })
         }
         fetchPokemon()
@@ -29,12 +35,25 @@ const PokemonDetail = () => {
     
   return (
     <div>
-        {<img src={pokemonInf.pokemonImg}/>}
-        
       
+        {<img src={pokemonInf.pokemonImg}/>}
       <h2>Detalles de {pokemonName}</h2>
-      {/* <p>{movimientos}</p> */}
       <Link  to={`/`}> Regresar </Link>
+      <section>
+        <ul>
+
+      {pokemonInf.pokemonMov.map((inf, index) =>{
+        return(
+          <div key={index}>
+            <li>
+            {inf}
+            </li>
+          </div>
+        )
+      })}
+        
+      </ul>
+      </section>
     </div>
   );
 };

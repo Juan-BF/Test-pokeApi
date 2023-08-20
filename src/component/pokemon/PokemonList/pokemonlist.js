@@ -5,10 +5,8 @@ import { PokedexApi } from '../service/pokedetailsapi'
 
 
 const PokemonData = () =>{
-
     const [ pokemon, setPokemon ] =useState({
         pokemonDato:[],
-        
     })
     const [quantity, setQuantity] = useState(10);
 
@@ -20,29 +18,22 @@ const PokemonData = () =>{
     setQuantity(quantity > 10 ? quantity - 10 : quantity );
 }
  
-      
 
     useEffect(() =>{
         const fetDato = async () =>{
             const pokeDato = await PokeApi(quantity)
-            console.log(pokeDato)
             const pokedexData = await Promise.all(pokeDato.map(async result =>{
-                
-
-
                 const resultPoke = await PokedexApi(result.name)
                 return resultPoke
             }))
-        
 
             setPokemon({
                 pokemonDato: pokedexData
             })
+            
         }
 
         fetDato()
-        
-
 
     },[quantity] )
    
@@ -50,19 +41,18 @@ const PokemonData = () =>{
     return(
         <div>
             <section>
-            
             <ul>
             <button type="submit" onClick={seeMore}>agregar 10</button>
             <br></br>
             <button type="submit" onClick={showLess}>quitar 10</button>
-                {pokemon.pokemonDato.map((pokemon, index) =>{
+                {pokemon.pokemonDato.map((pokemond, index) =>{
                     return(
                         <div key={index}>
                            <li>
-                        <Link to={`/${pokemon.name}`}>
-                        <img src={pokemon.sprites.front_default} alt={`Pokemon ${pokemon.name}`} />                          
+                        <Link to={`/${pokemond.name}`}>
+                        <img src={pokemond.sprites.front_default} alt={`Pokemon ${pokemon.name}`} />                          
                         </Link>
-                        <p>{pokemon.name}</p>
+                        <p>{pokemond.name}</p>
                         
                         </li>
                         
