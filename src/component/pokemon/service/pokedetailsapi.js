@@ -3,4 +3,6 @@ async function PokedexApi(pokeName){
     return response.json()
 } 
 
+
+
 export { PokedexApi }
