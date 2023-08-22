@@ -26,24 +26,40 @@ const PokemonDetail = () => {
             const detaiil = (result.abilities)
             const img = (result.sprites.front_default)
           
-
+            // console.log(detaiil)
             const details = await Promise.all(detail.map(async result =>{
               const respuesta = await (result.move.name)
+              
               return respuesta  
             }))
             
-
+            // console.log(details)
 
             const dabiliti = await Promise.all(detaiil.map(async result =>{
               const respuesta = await (result.ability.name)
+              console.log(result)
               return respuesta  
             }))
-             
-
+            
+            // 
+            
+            
             const Description = await Promise.all(detaiil.map(async result =>{
               const respuesta = await (result.ability.url)
-              const respuestaFet = await fetch('respuesta')
-              console.log(respuestaFet)
+              
+              const respuestaFet = await fetch (`${respuesta}`)
+              const retrun =await  respuestaFet.json()
+              const retdr = (retrun.effect_entries)
+              // console.log(retrun)
+
+
+
+              const int = await Promise.all(retdr.map(async resultt =>{
+                const respueest = await (resultt)
+                // console.log(respueest)
+                
+              }))
+              
               return respuesta
             }))
 
