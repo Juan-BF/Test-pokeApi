@@ -11,8 +11,9 @@ const PokemonDetail = () => {
   const [pokemonInf, setpokemonInf] = useState({
         pokemonImg:'',
         pokemonMoves:[],
-        pokemonAbilitysName:[],
-        pokes:[]
+        // pokemonAbilitysName:[],
+        pokes:[],
+      
      
   }) 
 
@@ -34,10 +35,10 @@ const PokemonDetail = () => {
             
 
 
-            const nombresDeHabilidades = await Promise.all(datosDeHabilidades.map(async datosGeneralesPokemon =>{
-              const respuesta = await (datosGeneralesPokemon.ability.name)
-              return respuesta  
-            }))
+            // const nombresDeHabilidades = await Promise.all(datosDeHabilidades.map(async datosGeneralesPokemon =>{
+            //   const respuesta = await (datosGeneralesPokemon.ability.name)
+            //   return respuesta  
+            // }))
 
 
 
@@ -53,23 +54,20 @@ const PokemonDetail = () => {
               const habilidades = respuestaApiJson.effect_entries
               const habilidadEn = habilidades.find(habilidad => habilidad.language.name === "en")
               const caracteristica = habilidadEn.effect
-              const detalles = name + ': ' + caracteristica;
+              const total = name + ':' + caracteristica
 
-              return detalles  
+              return [total]
             }))
            
-
-
-            
-
-
+           
 
             setpokemonInf({
               pokemonImg : img,
               pokemonMoves : nombreDeMovimientos,
-              pokemonAbilitysName : nombresDeHabilidades,
-              pokes:apiDeHabilidadesPromesas
-            
+              // pokemonAbilitysName : nombresDeHabilidades,
+              pokes:apiDeHabilidadesPromesas,
+              
+
             })
         }
         fetchPokemon()
@@ -87,8 +85,6 @@ const PokemonDetail = () => {
     <div> 
       
      
-     
-      
       {pokemonInf.pokes.map((ind, index) =>{
         return(
             <div key={index}>
