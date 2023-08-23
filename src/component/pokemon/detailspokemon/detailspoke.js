@@ -11,7 +11,7 @@ const PokemonDetail = () => {
         pokemonImg:'',
         pokemonMoves:[],
         pokes:[],
-        nombre:[]
+        // nombre:[]
   }) 
 
 
@@ -45,7 +45,7 @@ const PokemonDetail = () => {
            
             const habilidadesResult = await Promise.all(apiDeHabilidadesPromesas);
 
-            console.log(apiDeHabilidadesPromesas)
+            
 
 
 
@@ -53,7 +53,7 @@ const PokemonDetail = () => {
               pokemonImg : img,
               pokemonMoves : nombreDeMovimientos,
               pokes:habilidadesResult,
-              nombre:habilidadesResult
+              // nombre:habilidadesResult
 
             })
         }
