@@ -4,19 +4,15 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 
-
 const PokemonDetail = () => {
   const { pokemonName } = useParams();
 
   const [pokemonInf, setpokemonInf] = useState({
         pokemonImg:'',
         pokemonMoves:[],
-        // pokemonAbilitysName:[],
         pokes:[],
-      
-     
+        nombre:[]
   }) 
-
 
 
     useEffect(() =>{
@@ -27,46 +23,37 @@ const PokemonDetail = () => {
             const img = (datosGeneralesPokemon.sprites.front_default)
           
         
-
-            const nombreDeMovimientos = await Promise.all(movimientos.map(async datosGeneralesPokemon =>{
-              const respuesta = await (datosGeneralesPokemon.move.name)
-              return respuesta  
-            }))
-            
-
-
-            // const nombresDeHabilidades = await Promise.all(datosDeHabilidades.map(async datosGeneralesPokemon =>{
-            //   const respuesta = await (datosGeneralesPokemon.ability.name)
-            //   return respuesta  
-            // }))
-
+            const nombreDeMovimientos = movimientos.map(move => move.move.name);
+          
 
 
             const apiDeHabilidadesPromesas = await Promise.all(datosDeHabilidades.map(async datosGeneralesPokemon =>{
-
               const url = datosGeneralesPokemon.ability.url
-              const name = datosGeneralesPokemon.ability.name
-
-              
+              const nombre = datosGeneralesPokemon.ability.name
+                    
               const respuestaApi = await fetch(url)
               const respuestaApiJson = await respuestaApi.json()
 
               const habilidades = respuestaApiJson.effect_entries
               const habilidadEn = habilidades.find(habilidad => habilidad.language.name === "en")
               const caracteristica = habilidadEn.effect
-              const total = name + ':' + caracteristica
+              
+              return [nombre, caracteristica];
 
-              return [total]
+            
             }))
            
-           
+            const habilidadesResult = await Promise.all(apiDeHabilidadesPromesas);
+
+            console.log(apiDeHabilidadesPromesas)
+
+
 
             setpokemonInf({
               pokemonImg : img,
               pokemonMoves : nombreDeMovimientos,
-              // pokemonAbilitysName : nombresDeHabilidades,
-              pokes:apiDeHabilidadesPromesas,
-              
+              pokes:habilidadesResult,
+              nombre:habilidadesResult
 
             })
         }
@@ -84,16 +71,35 @@ const PokemonDetail = () => {
   return (
     <div> 
       
-     
-      {pokemonInf.pokes.map((ind, index) =>{
-        return(
-            <div key={index}>
+      <div>
+    <ul>
+      {pokemonInf.pokes.map(([nombre, caracteristica], index) => (
+        <li key={index}>
+          <p style={{ fontWeight: 'bold' }}>{nombre}<spam>{caracteristica}</spam></p>
+          <p style={{ fontStyle: 'italic' }}>{caracteristica}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
 
-            <p>{ind}</p>
-            </div>
+
+
+
+    {/* <div>
+    <ul>
+
+      {pokemonInf.pokes.map((nombre, index) =>{
+        return(
+          <li key={index}>
+            <p style={{ fontWeight: 'bold' }}>{nombre}</p>
+        <p style={{ fontStyle: 'italic' }}>{pokemonInf.pokes[index]}</p> 
+          </li>
         )
-    
+        
       })}
+      </ul>
+      </div> */}
+
         {<img src={pokemonInf.pokemonImg}/>}
             <h2>Detalles de {pokemonName}</h2>
             <Link  to={`/`}> Regresar </Link>
