@@ -12,36 +12,40 @@ const PokemonDetail = () => {
         pokemonMoves:[],
         nombreCaracteristica:[],
   }) 
-
+ 
 
     useEffect(() =>{
         const fetchPokemon = async () =>{
             const datosGeneralesPokemon = await PokedexApi(pokemonName)
-            const movimientos = (datosGeneralesPokemon.moves)
             const datosDeHabilidades = (datosGeneralesPokemon.abilities)
-            const datoType = (datosGeneralesPokemon.forms) 
             const img = (datosGeneralesPokemon.sprites.front_default)
+          
+            const DatoTypeUrl = datosGeneralesPokemon.forms.map(type => type.url)
+            const nombreDeMovimientos = datosGeneralesPokemon.moves.map(move => move.move.name);
+           
+          
 
-
-            const nombreDeMovimientos = movimientos.map(move => move.move.name);
-            console.log(datoType)
-
-            
             const apiDeHabilidadesPromesas = await Promise.all(datosDeHabilidades.map(async datosGeneralesPokemon =>{
               const url = datosGeneralesPokemon.ability.url
               const nombre = datosGeneralesPokemon.ability.name                    
               const respuestaApi = await fetch(url)
               const respuestaApiJson = await respuestaApi.json()
+              
               const habilidades = respuestaApiJson.effect_entries
               const habilidadEn = habilidades.find(habilidad => habilidad.language.name === "en")
               const caracteristica = habilidadEn.effect
-
-              
-
-
+    
               return [nombre, caracteristica];            
             }))
            
+
+            // const respuestappa = await fetch(datoTypeUrl)
+            // const respuestappaJson = await respuestappa.json()
+            // const nombreType = respuestappaJson.types
+            // .map(type => type.type.name)
+            // .reverse()
+
+
             const habilidadesResult = await Promise.all(apiDeHabilidadesPromesas);
 
             setpokemonInf({
