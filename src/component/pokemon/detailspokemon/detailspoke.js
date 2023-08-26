@@ -6,86 +6,84 @@ import { Link } from "react-router-dom";
 const PokemonDetail = () => {
   const { pokemonName } = useParams();
 
-    const [pokemonInf, setpokemonInf] = useState({
-          pokemonImg:'',
-          pokemonMoves:[],
-          nombreCaracteristica:[],
-      }) 
-  
+  const [pokemonInf, setpokemonInf] = useState({
+    pokemonImg: "",
+    pokemonMoves: [],
+    nombreCaracteristica: [],
+  });
 
-      useEffect(() =>{
-          const fetchPokemon = async () =>{
-              const datosGeneralesPokemon = await PokedexApi(pokemonName)
-              const datosDeHabilidades = (datosGeneralesPokemon.abilities)
-              const img = (datosGeneralesPokemon.sprites.front_default)
-            
-              const DatoTypeUrl = datosGeneralesPokemon.forms.map(type => type.url)
-              const nombreDeMovimientos = datosGeneralesPokemon.moves.map(move => move.move.name);
-            
-            
+  useEffect(() => {
+    const fetchPokemon = async () => {
+      const datosGeneralesPokemon = await PokedexApi(pokemonName);
+      const datosDeHabilidades = datosGeneralesPokemon.abilities;
+      const img = datosGeneralesPokemon.sprites.front_default;
 
-              const apiDeHabilidadesPromesas = await Promise.all(datosDeHabilidades.map(async datosGeneralesPokemon =>{
-                const url = datosGeneralesPokemon.ability.url
-                const nombre = datosGeneralesPokemon.ability.name                    
-                const respuestaApi = await fetch(url)
-                const respuestaApiJson = await respuestaApi.json()
-                
-                const habilidades = respuestaApiJson.effect_entries
-                const habilidadEn = habilidades.find(habilidad => habilidad.language.name === "en")
-                const caracteristica = habilidadEn.effect
-      
-                return [nombre, caracteristica];            
-              }))
+      const DatoTypeUrl = datosGeneralesPokemon.forms.map((type) => type.url);
+      const nombreDeMovimientos = datosGeneralesPokemon.moves.map(
+        (move) => move.move.name
+      );
 
-            const habilidadesResult = await Promise.all(apiDeHabilidadesPromesas);
+      const apiDeHabilidadesPromesas = await Promise.all(
+        datosDeHabilidades.map(async (datosGeneralesPokemon) => {
+          const url = datosGeneralesPokemon.ability.url;
+          const nombre = datosGeneralesPokemon.ability.name;
+          const respuestaApi = await fetch(url);
+          const respuestaApiJson = await respuestaApi.json();
 
-            setpokemonInf({
-              pokemonImg : img,
-              pokemonMoves : nombreDeMovimientos,
-              nombreCaracteristica:habilidadesResult,
+          const habilidades = respuestaApiJson.effect_entries;
+          const habilidadEn = habilidades.find(
+            (habilidad) => habilidad.language.name === "en"
+          );
+          const caracteristica = habilidadEn.effect;
 
-            })
-        }
-        fetchPokemon()
-        
-    },[pokemonName])
-  
+          return [nombre, caracteristica];
+        })
+      );
+
+      const habilidadesResult = await Promise.all(apiDeHabilidadesPromesas);
+
+      setpokemonInf({
+        pokemonImg: img,
+        pokemonMoves: nombreDeMovimientos,
+        nombreCaracteristica: habilidadesResult,
+      });
+    };
+    fetchPokemon();
+  }, [pokemonName]);
 
   return (
-    <div> 
-      
+    <div>
       <div>
-    <ul>
-      {pokemonInf.nombreCaracteristica.map(([nombre, caracteristica], index) => (
-        <li key={index}>
-          <p>{nombre}:</p> <span>{caracteristica}</span>
-        </li>
-      ))}
-    </ul>
-  </div>
+        <ul>
+          {pokemonInf.nombreCaracteristica.map(
+            ([nombre, caracteristica], index) => (
+              <li key={index}>
+                <p>{nombre}:</p> <span>{caracteristica}</span>
+              </li>
+            )
+          )}
+        </ul>
+      </div>
 
-
-        {<img src={pokemonInf.pokemonImg}/>}
-            <h2>Detalles de {pokemonName}</h2>
-            <Link  to={`/`}> Regresar </Link>
-            <section>
-              <ul>
-            {pokemonInf.pokemonMoves.map((inf, index) =>{
-              return(
-                <div key={index}>
-                  <li>
-                  {inf}
-                  </li>
-                </div>
-              )
-            })}
-      </ul>
+      {<img 
+      src={pokemonInf.pokemonImg}
+      alt={"imagen de " + {pokemonName} }
+      />}
+      <h2>Detalles de {pokemonName}</h2>
+      <Link to={`/`}> Regresar </Link>
+      <section>
+        <ul>
+          {pokemonInf.pokemonMoves.map((inf, index) => {
+            return (
+              <div key={index}>
+                <li>{inf}</li>
+              </div>
+            );
+          })}
+        </ul>
       </section>
     </div>
   );
 };
 
-
-
-
-export { PokemonDetail }
+export { PokemonDetail };

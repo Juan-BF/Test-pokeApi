@@ -18,28 +18,25 @@ const PokemonData = () => {
     const newQuantity = newValue < 10 ? 10 : newValue > 1200 ? 1200 : newValue;
     setQuantity(newQuantity);
   };
+
   const seeMore = () => {
     updateQuantity(10);
   };
+
   const showLess = () => {
     updateQuantity(-10);
   };
-  
-//Aqui esta el codigo para capturar la entrada de text en los 2 input 
-  const handleInputChange = (event) =>{
+
+  const handleInputChange = (event) => {
     const inputValue = event.target.value.toLowerCase();
     const inputName = event.target.name;
 
-    if (inputName === "pokemonName"){
+    if (inputName === "nombre") {
       setPokemonName(inputValue);
-    } else if(inputName === "pokemonTypes"){
-      setPokemonTypes(inputValue)
+    } else if (inputName === "types") {
+      setPokemonTypes(inputValue);
     }
-  }
-
- 
-
-
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,36 +66,37 @@ const PokemonData = () => {
     const filteredData = pokemon.pokemonDato.filter((pokemonData) => {
       const nombre = pokemonData[0].toLowerCase();
       const tipos = pokemonData[1].map((tipo) => tipo.toLowerCase()).join(", ");
-
+  
       const nameFilter = pokemonName === "" || nombre.startsWith(pokemonName);
       const typesFilter = pokemonTypes === "" || tipos.includes(pokemonTypes);
-
+  
       return nameFilter && typesFilter;
     });
-
+  
     setNombresFiltrados(filteredData);
   }, [pokemonName, pokemonTypes, pokemon.pokemonDato]);
 
   return (
     <div>
       <div>
-        <label htmlFor="pokemonName">Nombre del Pokemon </label>
-        <input 
-        type="text"
-        id="pokemonName"
-        name="pokemonName"
-        onChange={handleInputChange}
-        value={pokemonName}
+        <label htmlFor="nombre">Nombre Pokemon </label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          onChange={handleInputChange}
+          value={pokemonName}
         />
       </div>
+
       <div>
-        <label htmlFor="pokemonType"> Tipo de Pokemon</label>
-        <input 
-        type="text"
-        id="pokemonType"
-        name="pokemonTypes"
-        onChange={handleInputChange}
-        value={pokemonTypes}
+        <label htmlFor="Type">Tipos de pokemon </label>
+        <input
+          type="text"
+          id="types"
+          name="types"
+          onChange={handleInputChange}
+          value={pokemonTypes}
         />
       </div>
 
@@ -124,5 +122,6 @@ const PokemonData = () => {
     </div>
   );
 };
+
 
 export { PokemonData, PokedexApi, PokeApi };
