@@ -20,7 +20,6 @@ const PokemonData = () => {
   const [nombresFiltrados, setNombresFiltrados] = useState([]);
   const [nombre, setNombre] = useState("");
 
-
   const handleInputChange = (event) => {
     const letrasIngresadas = event.target.value.toLowerCase();
 
@@ -34,24 +33,24 @@ const PokemonData = () => {
 
   useEffect(() => {
     const fetDato = async () => {
-
       const pokeDato = await PokeApi(quantity);
       const pokedexData = await Promise.all(
         pokeDato.map(async (result) => {
-          const variable = result.name
+          const variable = result.name;
           const resultPoke = await PokedexApi(result.name);
-          const resul = resultPoke.types
-          const imgane = resultPoke.sprites.front_default
-          const repos =await Promise.all(resul.map(async (re) =>{
-            const resposta = re.type.name
-           return resposta
-          } ))
+          const resul = resultPoke.types;
+          const imgane = resultPoke.sprites.front_default;
+          const repos = await Promise.all(
+            resul.map(async (re) => {
+              const resposta = re.type.name;
+              return resposta;
+            })
+          );
 
-          return [variable, repos, imgane]
+          return [variable, repos, imgane];
         })
       );
-  const final = await Promise.all(pokedexData)
-
+      const final = await Promise.all(pokedexData);
 
       setPokemon({
         pokemonDato: final,
@@ -62,9 +61,8 @@ const PokemonData = () => {
     fetDato();
   }, [quantity]);
 
-  const test = nombresFiltrados.map(result => result.result)
-
-  console.log(test)
+  const test = nombresFiltrados.map((result) => result.result);
+  console.log(test);
   return (
     <div>
       <div>
@@ -85,41 +83,17 @@ const PokemonData = () => {
         quitar 10
       </button>
 
-
       <section>
         {nombresFiltrados.map(([pokemonName, typeNames, imageUrl], index) => (
           <li key={index}>
             <Link to={`/${pokemonName}`}>
-              <img
-                src={imageUrl}
-                alt={`Pokemon ${pokemonName}`}
-              />
+              <img src={imageUrl} alt={`Pokemon ${pokemonName}`} />
             </Link>
             <p>{pokemonName}</p>
             <p>Types: {typeNames.join(", ")}</p>
           </li>
         ))}
       </section>
-
-
-      {/* <section>
-
-
-
-        {nombresFiltrados.map(([nombre, index]) => (
-          <li key={index}>
-            <Link to={`/${nombre.name}`}>
-              <img
-                src={nombre.sprites.front_default}
-                alt={`Pokemon ${nombre.name}`}
-              />
-            </Link>
-            <p>{nombre.name}</p>
-          </li>
-        ))}
-      </section>
-     */}
-    
     </div>
   );
 };
