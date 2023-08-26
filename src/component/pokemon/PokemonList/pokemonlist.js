@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PokeApi } from "../service/pokeapi";
 import { PokedexApi } from "../service/pokedetailsapi";
-import { Pokk } from "../service/pokedetailsapi";
 
 const PokemonData = () => {
   const [pokemon, setPokemon] = useState({
@@ -22,10 +21,6 @@ const PokemonData = () => {
   const [nombre, setNombre] = useState("");
 
 
-  
- 
-
-
   const handleInputChange = (event) => {
     const letrasIngresadas = event.target.value.toLowerCase();
 
@@ -35,95 +30,41 @@ const PokemonData = () => {
 
     setNombre(event.target.value);
     setNombresFiltrados(nombresFiltrados);
-    // console.log(nombre)
   };
 
   useEffect(() => {
     const fetDato = async () => {
 
-
-      // const datosGeneralesPokemon = await PokedexApi(nombre)
-      //  const datosDeHabilidades = (datosGeneralesPokemon.abilities)
-
-
-      
-// const poder = await Promise.all(pokedato)
-      
-async function PokedexApid(namePok){
-  const response = await fetch(`https://pokeapi.co/api/v2/pokemon-form/${namePok}/`)
-   
-  const ester = await response.json()
-  // console.log(ester)
-  return ester
-} 
-
-PokedexApid("bulbasaur")
-
-
-
       const pokeDato = await PokeApi(quantity);
-
-
-  //  console.log(pokedexData)
-    
-  const pokedexData3 = await Promise.all(
-    pokeDato.map(async (result) => {
-      const variable = result.name
-      // const resul = variable.map(resu => resu.types.type.name)
-      const resultPoke = await PokedexApid(result.name);
-      
-      return resultPoke;
-    })
-  );
-
-
       const pokedexData = await Promise.all(
         pokeDato.map(async (result) => {
           const variable = result.name
           const resultPoke = await PokedexApi(result.name);
           const resul = resultPoke.types
-
+          const imgane = resultPoke.sprites.front_default
           const repos =await Promise.all(resul.map(async (re) =>{
             const resposta = re.type.name
            return resposta
           } ))
-          console.log(variable + ' ' + repos)
-          // console.log(repos + )
-          
 
-          // console.log(variable)
-          return resultPoke;
+          return [variable, repos, imgane]
         })
       );
-
-
-      const pokedexData2 = await Promise.all(
-        pokedexData.map(async (result) => {
-          const igual = result
-          // const resultPoke = await Pokk(result);
-          // const resultado = resultPoke.types
-          // console.log(igual)
-          // return resultado;
-        })
-      );
-
-// console.log(pokedexData)
-      
-      // const inte = pokedexData.map(poked => poked.forms)
-      
-      // console.log(inte)
-
+  const final = await Promise.all(pokedexData)
 
 
       setPokemon({
-        pokemonDato: pokedexData,
+        pokemonDato: final,
       });
-      setNombresFiltrados(pokedexData);
+      setNombresFiltrados(final);
     };
 
     fetDato();
   }, [quantity]);
 
+  const test = nombresFiltrados.map(result => result.result)
+
+  console.log(test)
   return (
     <div>
       <div>
@@ -145,9 +86,27 @@ PokedexApid("bulbasaur")
       </button>
 
 
-
       <section>
-        {nombresFiltrados.map((nombre, index) => (
+        {nombresFiltrados.map(([pokemonName, typeNames, imageUrl], index) => (
+          <li key={index}>
+            <Link to={`/${pokemonName}`}>
+              <img
+                src={imageUrl}
+                alt={`Pokemon ${pokemonName}`}
+              />
+            </Link>
+            <p>{pokemonName}</p>
+            <p>Types: {typeNames.join(", ")}</p>
+          </li>
+        ))}
+      </section>
+
+
+      {/* <section>
+
+
+
+        {nombresFiltrados.map(([nombre, index]) => (
           <li key={index}>
             <Link to={`/${nombre.name}`}>
               <img
@@ -159,7 +118,7 @@ PokedexApid("bulbasaur")
           </li>
         ))}
       </section>
-    
+     */}
     
     </div>
   );
