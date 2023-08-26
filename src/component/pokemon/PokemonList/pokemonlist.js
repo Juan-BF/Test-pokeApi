@@ -18,48 +18,30 @@ const PokemonData = () => {
   };
 
   const [nombresFiltrados, setNombresFiltrados] = useState([]);
-  
-
 
   const [nombre, setNombre] = useState("");
   const [types, setType] = useState("");
 
   const handleInputChange = (event) => {
     const inputValue = event.target.value.toLowerCase();
-    
+
     if (event.target.name === "nombre") {
       setNombre(inputValue);
     } else if (event.target.name === "types") {
       setType(inputValue);
     }
-    
+
     const nombresFiltrados = pokemon.pokemonDato.filter((pokemonData) => {
       const nombre = pokemonData[0].toLowerCase();
-      const tipos = pokemonData[1].map((tipo) => tipo.toLowerCase()).join(', ');
-  
+      const tipos = pokemonData[1].map((tipo) => tipo.toLowerCase()).join(", ");
+
       return nombre.startsWith(inputValue) || tipos.includes(inputValue);
     });
-  
+
     setNombresFiltrados(nombresFiltrados);
   };
-  
-  
-  
-  
-  
-  // const handleInputChange = (event) => {
-  //   const letrasIngresadas = event.target.value.toLowerCase();
-  //   const nombresFiltrados = pokemon.pokemonDato.filter((pokemonData) =>
-  //     pokemonData[0].toLowerCase().startsWith(letrasIngresadas),
-  //   );
-   
-
-  //   setNombre(event.target.value);
-  //   setNombresFiltrados(nombresFiltrados);
-  // };
 
   useEffect(() => {
-
     const fetDato = async () => {
       const pokeDato = await PokeApi(quantity);
 
@@ -82,8 +64,6 @@ const PokemonData = () => {
       );
       const final = await Promise.all(pokedexData);
 
-
-    
       setPokemon({
         pokemonDato: final
       });
@@ -92,7 +72,6 @@ const PokemonData = () => {
 
     fetDato();
   }, [quantity]);
-
 
   return (
     <div>
@@ -108,7 +87,6 @@ const PokemonData = () => {
         />
       </div>
 
-   
       <div>
         <label htmlFor="Type">typos de pokemon </label>
 
@@ -120,7 +98,6 @@ const PokemonData = () => {
           value={types}
         />
       </div>
-
 
       <button type="submit" onClick={seeMore}>
         agregar 10
@@ -137,7 +114,7 @@ const PokemonData = () => {
               <img src={imageUrl} alt={`Pokemon ${pokemonName}`} />
             </Link>
             <p>{pokemonName}</p>
-            <p>Types: {typeNames.join(', ')}</p>
+            <p>Types: {typeNames.join(", ")}</p>
           </li>
         ))}
       </section>

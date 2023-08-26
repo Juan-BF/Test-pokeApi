@@ -1,13 +1,10 @@
 import { useParams } from "react-router-dom";
-import { PokedexApi } from "../PokemonList/pokemonlist";
+import { PokedexApi } from "../PokemonList/pokemonlist.js";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const PokemonDetail = () => {
   const { pokemonName } = useParams();
-
-
-
 
     const [pokemonInf, setpokemonInf] = useState({
           pokemonImg:'',
@@ -39,14 +36,6 @@ const PokemonDetail = () => {
       
                 return [nombre, caracteristica];            
               }))
-           
-
-            // const respuestappa = await fetch(datoTypeUrl)
-            // const respuestappaJson = await respuestappa.json()
-            // const nombreType = respuestappaJson.types
-            // .map(type => type.type.name)
-            // .reverse()
-
 
             const habilidadesResult = await Promise.all(apiDeHabilidadesPromesas);
 

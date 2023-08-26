@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { PokemonDetail } from "../detailspokemon/detailspoke";
-import { PokemonData } from "../PokemonList/pokemonlist";
+import { PokemonData } from "../PokemonList/pokemonlist.js";
 
 const AppRoutes = () => {
   return (
