@@ -61,7 +61,7 @@ const PokemonData = () => {
 
     fetchData();
   }, [quantity]);
-
+  
   useEffect(() => {
     const filteredData = pokemon.pokemonDato.filter((pokemonData) => {
       const nombre = pokemonData[0].toLowerCase();
