@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { PokedexApi } from "../PokemonList/pokemonlist.js";
+import { PokedexApi } from "../PokemonList/pokemonlist";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -45,7 +45,7 @@ const PokemonDetail = () => {
       setpokemonInf({
         pokemonImg: img,
         pokemonMoves: nombreDeMovimientos,
-        nombreCaracteristica: habilidadesResult,
+        nombreCaracteristica: apiDeHabilidadesPromesas,
       });
     };
     fetchPokemon();
