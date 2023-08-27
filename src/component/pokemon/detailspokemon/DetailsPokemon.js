@@ -1,7 +1,10 @@
 import { useParams } from "react-router-dom";
-import { PokedexApi } from "../PokemonList/pokemonlist";
+import { PokedexApi } from "../PokemonListPage/PokemonData";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+
+
 
 const PokemonDetail = () => {
   const { pokemonName } = useParams();
@@ -27,14 +30,12 @@ const PokemonDetail = () => {
       const  imageUrl= resultData.sprites.front_default
       // const  imageUrl2= resultData.sprites.front_shiny
       const  skillsDataName= resultData.abilities.map((skill) => skill.ability.name)
-      const  skillsDataUrl= resultData.abilities
       const  nameMove= resultData.moves.map((move) => move.move.name)
- 
+
 
       const apiDeHabilidadesPromesas = await Promise.all(
-        skillsDataUrl.map(async (datosGeneralesPokemon) => {
-          const url = datosGeneralesPokemon.ability.url;
-          const nombre = datosGeneralesPokemon.ability.name;
+        resultData.abilities.map(async ({ ability }) => {
+          const { url, name } = ability
           const respuestaApi = await fetch(url);
           const respuestaApiJson = await respuestaApi.json();
 
@@ -43,8 +44,7 @@ const PokemonDetail = () => {
             (habilidad) => habilidad.language.name === "en"
           );
           const caracteristica = habilidadEn.effect;
-
-          return [nombre, caracteristica];
+          return [name, caracteristica];
         })
       );
 
@@ -82,6 +82,7 @@ const PokemonDetail = () => {
       <Link to={`/`}> Regresar </Link>
       <section>
         <ul>
+          <h2>Movimientos de {pokemonName}</h2>
           {pokemonInf.pokemonMoves.map((inf, index) => {
             return (
               <div key={index}>

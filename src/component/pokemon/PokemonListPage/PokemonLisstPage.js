@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const PokemonList = ({ ResultFilter }) => {
+const PokemonListPage = ({ ResultFilter }) => {
   return (
     <section>
       {ResultFilter.map(([pokemonName, typeNames, imageUrl], index) => (
@@ -17,4 +17,4 @@ const PokemonList = ({ ResultFilter }) => {
   );
 };
 
-export default PokemonList;
+export default PokemonListPage;

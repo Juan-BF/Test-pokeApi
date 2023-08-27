@@ -1,4 +1,4 @@
-async function PokeApi(quantity){
+async function GetPokemonApi(quantity){
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon?offset=0&limit=${quantity}`)
     const responseApi = await response.json()
     return responseApi.results
@@ -8,4 +8,4 @@ async function PokeApi(quantity){
 
 
 
-export { PokeApi } 
+export default GetPokemonApi  

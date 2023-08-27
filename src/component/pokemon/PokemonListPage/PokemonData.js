@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Filters from "../../Filter/InputFilter";
-import PokemonList from "./PokemonLisst";
-import { PokeApi } from "../service/pokeapi";
-import { PokedexApi } from "../service/pokedetailsapi";
+import PokemonListPage from "./PokemonLisstPage";
+import GetPokemonApi from "../service/GetPokemonApi"
+import GetPokemonData from "../service/GetPokemonData";
 import Button from "../../Button/Button";
 
 const PokemonData = () => {
@@ -34,13 +34,13 @@ const PokemonData = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const pokemonData = await PokeApi(quantity);
+      const pokemonData = await GetPokemonApi(quantity);
 
       const pokemonDetails = await Promise.all(
         pokemonData.map(async (result) => {
           const pokemonName = result.name;
 
-          const pokemonInfo = await PokedexApi(pokemonName);
+          const pokemonInfo = await GetPokemonData(pokemonName);
           const pokemonTypes = pokemonInfo.types.map((tipo) => tipo.type.name);
           const pokemonImageUrl = pokemonInfo.sprites.front_default;
 
@@ -79,9 +79,9 @@ const PokemonData = () => {
         type={pokemonTypes}
         handleInputChange={handleInputChange}
       />
-      <PokemonList ResultFilter={pokemonFilter} />
+      <PokemonListPage ResultFilter={pokemonFilter} />
     </div>
   );
 };
 
-export { PokedexApi, PokeApi, PokemonData };
+export { GetPokemonData as PokedexApi, GetPokemonApi, PokemonData };

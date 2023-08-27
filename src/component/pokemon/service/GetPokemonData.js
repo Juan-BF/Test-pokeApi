@@ -1,4 +1,4 @@
-async function PokedexApi(pokeName){
+async function GetPokemonData(pokeName){
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}/`)
     const result = await response.json()
     return result
@@ -7,4 +7,4 @@ async function PokedexApi(pokeName){
 } 
 
 
-export { PokedexApi }
+export default GetPokemonData 
