@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 const PokemonListPage = ({ ResultFilter }) => {
   return (
     <section>
-      {ResultFilter.map(([pokemonName, typeNames, imageUrl], index) => (
+      {ResultFilter.map(([pokemonName, typeNames, imageUrl, id], index) => (
         <li key={index}>
-          <Link to={`/${pokemonName}`}>
+          <Link to={`/${id}`}>
             <img src={imageUrl} alt={`Pokemon ${pokemonName}`} />
           </Link>
           <p>{pokemonName}</p>

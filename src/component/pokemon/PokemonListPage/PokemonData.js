@@ -9,7 +9,7 @@ const PokemonData = () => {
   const [pokemon, setPokemon] = useState({
     pokemonDato: [],
   });
-
+  
   const [quantity, setQuantity] = useState(10);
   const [pokemonFilter, setPokemonFilter] = useState([]);
   const [pokemonName, setPokemonName] = useState("");
@@ -32,6 +32,15 @@ const PokemonData = () => {
     }
   };
 
+  const seeMore = () => {
+    updateQuantity(10);
+  };
+
+  const showLess = () => {
+    updateQuantity(-10);
+  };
+  
+
   useEffect(() => {
     const fetchData = async () => {
       const pokemonData = await GetPokemonApi(quantity);
@@ -43,8 +52,9 @@ const PokemonData = () => {
           const pokemonInfo = await GetPokemonData(pokemonName);
           const pokemonTypes = pokemonInfo.types.map((tipo) => tipo.type.name);
           const pokemonImageUrl = pokemonInfo.sprites.front_default;
+          const idPokemon = pokemonInfo.id
 
-          return [pokemonName, pokemonTypes, pokemonImageUrl];
+          return [pokemonName, pokemonTypes, pokemonImageUrl, idPokemon];
         })
       );
 
@@ -73,7 +83,12 @@ const PokemonData = () => {
 
   return (
     <div>
-      <Button updateQuantity={updateQuantity} />
+      <Button
+      seeMore={seeMore} 
+      showLess={showLess}
+      nameBtnMore="Ver Mas"
+      nameBtnLess="Ver Menos"
+         />
       <Filters
         name={pokemonName}
         type={pokemonTypes}

@@ -5,7 +5,4 @@ async function GetPokemonApi(quantity){
 }
 
 
-
-
-
 export default GetPokemonApi  

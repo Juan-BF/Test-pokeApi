@@ -1,22 +1,16 @@
 import React, { useState } from "react";
 
-const Button = ({ updateQuantity }) => {
-  const seeMore = () => {
-    updateQuantity(10);
-  };
-
-  const showLess = () => {
-    updateQuantity(-10);
-  };
-
+const Button = ({ seeMore, showLess, nameBtnMore, nameBtnLess }) => {
+  
+  
   return (
     <div>
-      <button type="button" onClick={seeMore}>
-        agregar 10
+      <button type="button" onClick={seeMore} >
+        {nameBtnMore}
       </button>
       <br />
       <button type="button" onClick={showLess}>
-        quitar 10
+      {nameBtnLess}
       </button>
     </div>
   );

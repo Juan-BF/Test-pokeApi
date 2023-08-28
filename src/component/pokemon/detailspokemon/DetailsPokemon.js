@@ -1,89 +1,118 @@
 import { useParams } from "react-router-dom";
-import { PokedexApi } from "../PokemonListPage/PokemonData";
-import { useState, useEffect } from "react";
+import GetPokemonData from "../service/GetPokemonData";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-
-
-
+import Button from "../../Button/Button";
 
 const PokemonDetail = () => {
   const { pokemonName } = useParams();
-
-  const [pokemonInf, setpokemonInf] = useState({
-    pokemonImg: "",
-    pokemonMoves: [],
-    nombreCaracteristica: [],
+  const [PokemonDato, setPokemonDato] = useState({
+    idpokemon:1,
+    imageUrl: "",
+    typesDato: [],
+    abilitisData: [],
+    pokemonMoveName: [],
+    pokemonNameUp: "",
+    
   });
-  useEffect(() =>{
-
-  },[])
-
-
-
 
   useEffect(() => {
     const fetchPokemon = async () => {
-
-      const resultData = await PokedexApi(pokemonName);
-      console.log(resultData)
-      const  types= resultData.types.map((tipo) => tipo.type.name)
-      const  imageUrl= resultData.sprites.front_default
-      // const  imageUrl2= resultData.sprites.front_shiny
-      const  skillsDataName= resultData.abilities.map((skill) => skill.ability.name)
-      const  nameMove= resultData.moves.map((move) => move.move.name)
-
-
-      const apiDeHabilidadesPromesas = await Promise.all(
-        resultData.abilities.map(async ({ ability }) => {
-          const { url, name } = ability
-          const respuestaApi = await fetch(url);
-          const respuestaApiJson = await respuestaApi.json();
-
-          const habilidades = respuestaApiJson.effect_entries;
-          const habilidadEn = habilidades.find(
-            (habilidad) => habilidad.language.name === "en"
-          );
-          const caracteristica = habilidadEn.effect;
-          return [name, caracteristica];
+      const resultData = await GetPokemonData(pokemonName);
+      const { abilities, sprites, moves, types, name, id } = resultData;
+      const imagePokemon = sprites.front_default;
+      const Types = types.map((type) => type.type.name);
+      const movesName = moves.map((move) => move.move.name);
+      const detailsAbilites = await Promise.all(
+        abilities.map(async ({ ability }) => {
+          const { name, url } = ability;
+          const fetchPokemonAbility = await fetch(url);
+          const answer = await fetchPokemonAbility.json();
+          const descrition = answer.effect_entries.find(
+            (effect) => effect.language.name === "en"
+          ).effect;
+          return [name, descrition];
         })
+
+        
       );
 
-  
 
-      setpokemonInf({
-        pokemonImg: imageUrl,
-        pokemonMoves: nameMove,
-        nombreCaracteristica: apiDeHabilidadesPromesas,
+
+
+      setPokemonDato({
+        idpokemon: id,
+        imageUrl: imagePokemon,
+        typesDato: Types,
+        abilitisData: detailsAbilites,
+        pokemonMoveName: movesName,
+        pokemonNameUp: name,
+       
       });
     };
     fetchPokemon();
   }, [pokemonName]);
 
+  console.log(PokemonDato.idpokemon );
+ 
+  const linkRef = useRef(null);
 
+
+  const [numeroPokemon, setNumeroPokemon] = useState(pokemonName);
+ 
+  const handleSumaClick = () => {
+    setNumeroPokemon(parseInt(numeroPokemon, 10) > 699 ? 1 : parseInt(numeroPokemon, 10) + 1)
+    linkRef.current.click();
+  };
+  
+  const handleRestaClick = () => {
+    setNumeroPokemon(numeroPokemon <= 1 ? 700 : numeroPokemon - 1);
+    linkRef.current.click();
+  };
+
+  
+
+  useEffect(() => {
+    linkRef.current.click();
+  }, [numeroPokemon]);
+
+  
   return (
     <div>
+      {
+        <img
+          src={PokemonDato.imageUrl}
+          alt={"imagen de " + PokemonDato.pokemonNameUp}
+        />
+      }
       <div>
         <ul>
-          {pokemonInf.nombreCaracteristica.map(
-            ([nombre, caracteristica], index) => (
-              <li key={index}>
-                <p>{nombre}:</p> <span>{caracteristica}</span>
-              </li>
-            )
-          )}
+          {PokemonDato.abilitisData.map(([name, description], index) => (
+            <li key={index}>
+              <p>{name}:</p> <span>{description}</span>
+            </li>
+          ))}
         </ul>
       </div>
 
-      {<img 
-      src={pokemonInf.pokemonImg}
-      alt={"imagen de " + {pokemonName} }
-      />}
-      <h2>Detalles de {pokemonName}</h2>
-      <Link to={`/`}> Regresar </Link>
+      <h2>Detalles de {PokemonDato.pokemonNameUp}-------{PokemonDato.orderNum}</h2>
+      <Button
+          nameBtnMore="Siguente"
+          nameBtnLess="Anterior"
+          seeMore={handleSumaClick}
+          showLess={handleRestaClick}
+          
+        />
+      
+
+        <Link ref={linkRef} to={`/${numeroPokemon}`} >
+        
+      </Link>
       <section>
         <ul>
-          <h2>Movimientos de {pokemonName}</h2>
-          {pokemonInf.pokemonMoves.map((inf, index) => {
+          <h2>{"Movimientos de" + PokemonDato.pokemonNameUp}</h2>
+          <Link to={`/`}> Regresar </Link>
+          {PokemonDato.pokemonMoveName.map((inf, index) => {
             return (
               <div key={index}>
                 <li>{inf}</li>
