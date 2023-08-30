@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Filters from "../../Filter/InputFilter";
 import PokemonListPage from "./PokemonLisstPage";
-import GetPokemonApi from "../service/GetPokemonApi"
+import GetPokemonApi from "../service/GetPokemonApi";
 import GetPokemonData from "../service/GetPokemonData";
 import Button from "../../Button/Button";
 
@@ -9,7 +9,7 @@ const PokemonData = () => {
   const [pokemon, setPokemon] = useState({
     pokemonDato: [],
   });
-  
+
   const [quantity, setQuantity] = useState(10);
   const [pokemonFilter, setPokemonFilter] = useState([]);
   const [pokemonName, setPokemonName] = useState("");
@@ -39,7 +39,6 @@ const PokemonData = () => {
   const showLess = () => {
     updateQuantity(-10);
   };
-  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -52,9 +51,17 @@ const PokemonData = () => {
           const pokemonInfo = await GetPokemonData(pokemonName);
           const pokemonTypes = pokemonInfo.types.map((tipo) => tipo.type.name);
           const pokemonImageUrl = pokemonInfo.sprites.front_default;
-          const idPokemon = pokemonInfo.id
+          const pokemonImageUrl2 = pokemonInfo.sprites.front_shiny;
 
-          return [pokemonName, pokemonTypes, pokemonImageUrl, idPokemon];
+          const idPokemon = pokemonInfo.id;
+
+          return [
+            pokemonName,
+            pokemonTypes,
+            pokemonImageUrl,
+            idPokemon,
+            pokemonImageUrl2,
+          ];
         })
       );
 
@@ -81,21 +88,45 @@ const PokemonData = () => {
     setPokemonFilter(filterdata);
   }, [pokemonName, pokemonTypes, pokemon.pokemonDato]);
 
+  const [isHovered, setIsHovered] = useState(
+    Array(pokemonFilter.length).fill(false)
+  );
+
+
+  
   return (
-    <div>
+    <div className="boxAll">
+      <div className="contentBox">
+        <h1 className="titleList">ELIGE A TU HÉROE</h1>
+        <p className="descritionList">
+          Mentes estratégicas, criaturas formidables, intrépidos exploradores...
+          En el universo Pokémon, la diversidad es infinita. Desencadena
+          habilidades únicas y poderosos ataques en tu camino hacia el éxito
+          como Entrenador Pokémon. ¡Atrapa, entrena y compite para alcanzar la
+          cima!
+        </p>
+      </div>
       <Filters
         name={pokemonName}
         type={pokemonTypes}
         handleInputChange={handleInputChange}
       />
-       <PokemonListPage ResultFilter={pokemonFilter} />
-       <Button
-      seeMore={seeMore} 
-      showLess={showLess}
-      nameBtnMore="Ver Mas"
-      nameBtnLess="Ver Menos"
-         />
-     
+      <PokemonListPage
+        ResultFilter={pokemonFilter}
+        isHovered={isHovered}
+        setIsHovered={(index, value) => {
+          const updatedIsHovered = [isHovered];
+          updatedIsHovered[index] = value;
+          setIsHovered(updatedIsHovered);
+        }}
+        alternativeImageUrls={pokemon.pokemonDato.map((details) => details[4])}
+      />
+      <Button
+        seeMore={seeMore}
+        showLess={showLess}
+        nameBtnMore="Ver Mas"
+        nameBtnLess="Ver Menos"
+      />
     </div>
   );
 };

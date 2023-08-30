@@ -1,13 +1,16 @@
 import React from "react";
 import "../Filter/style.css"
+import { faSearchengin } from '@fortawesome/free-brands-svg-icons';
 
 const Filters = ({ name, type, handleInputChange }) => {
   return (
-    <div>
+    <div className="navigationBar">
       <div className="searchBox">
-        <div>
-          <label htmlFor="name">Nombre del Pokemon </label>
+        <div className="boxSearch">
+        <FontAwesomeIcon icon={faSearchengin} className="icono-personalizado" />
+          {/* <label htmlFor="name">Nombre del Pokemon</label> */}
           <input
+          className="inputSearch"
             type="text"
             id="name"
             name="name"
@@ -15,7 +18,7 @@ const Filters = ({ name, type, handleInputChange }) => {
             value={name}
           />
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="type">Tipo de Pokemon </label>
           <input
             type="text"
@@ -24,7 +27,7 @@ const Filters = ({ name, type, handleInputChange }) => {
             onChange={handleInputChange}
             value={type}
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -1,3 +1,30 @@
 .searchBox{
     display: flex;
+    justify-content: flex-end;
+    margin: 0 25px;
+    background-color: rgb(37, 40, 42);
+    background-image: ;
+    width: 250px;
+    height: 50px;
 }
+.boxSearch{
+    display: flex;
+    align-items: center;
+    margin: 0 9px;
+    
+}
+.inputSearch{
+    background-color: rgb(37, 40, 42);
+    width: 190px;
+    height: 30px;
+}
+.inputSearch:focus {
+    caret-color: rgb(252, 252, 252);
+    background-color: rgb(80, 80, 80);
+   
+}
+.icono-personalizado {
+    font-size: 24px;
+    color: blue;
+    /* Otros estilos que desees aplicar */
+  }
