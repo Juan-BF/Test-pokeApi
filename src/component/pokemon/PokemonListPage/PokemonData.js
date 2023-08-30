@@ -83,18 +83,19 @@ const PokemonData = () => {
 
   return (
     <div>
-      <Button
-      seeMore={seeMore} 
-      showLess={showLess}
-      nameBtnMore="Ver Mas"
-      nameBtnLess="Ver Menos"
-         />
       <Filters
         name={pokemonName}
         type={pokemonTypes}
         handleInputChange={handleInputChange}
       />
-      <PokemonListPage ResultFilter={pokemonFilter} />
+       <PokemonListPage ResultFilter={pokemonFilter} />
+       <Button
+      seeMore={seeMore} 
+      showLess={showLess}
+      nameBtnMore="Ver Mas"
+      nameBtnLess="Ver Menos"
+         />
+     
     </div>
   );
 };

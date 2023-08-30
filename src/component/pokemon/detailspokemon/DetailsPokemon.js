@@ -37,9 +37,6 @@ const PokemonDetail = () => {
         
       );
 
-
-
-
       setPokemonDato({
         idpokemon: id,
         imageUrl: imagePokemon,
@@ -56,20 +53,17 @@ const PokemonDetail = () => {
   console.log(PokemonDato.idpokemon );
  
   const linkRef = useRef(null);
+  const [numeroPokemon, setNumeroPokemon] = useState(Number(pokemonName));
 
-
-  const [numeroPokemon, setNumeroPokemon] = useState(pokemonName);
- 
   const handleSumaClick = () => {
-    setNumeroPokemon(parseInt(numeroPokemon, 10) > 699 ? 1 : parseInt(numeroPokemon, 10) + 1)
+    setNumeroPokemon(prevNumero => (prevNumero >= 700 ? 1 : prevNumero + 1));
     linkRef.current.click();
   };
   
   const handleRestaClick = () => {
-    setNumeroPokemon(numeroPokemon <= 1 ? 700 : numeroPokemon - 1);
+    setNumeroPokemon(prevNumero => (prevNumero <= 1 ? 700 : prevNumero - 1));
     linkRef.current.click();
   };
-
   
 
   useEffect(() => {
@@ -124,5 +118,6 @@ const PokemonDetail = () => {
     </div>
   );
 };
+
 
 export { PokemonDetail };
