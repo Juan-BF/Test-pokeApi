@@ -1,5 +1,6 @@
 import React from "react";
 import "../Filter/style.css"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearchengin } from '@fortawesome/free-brands-svg-icons';
 
 const Filters = ({ name, type, handleInputChange }) => {
