@@ -54,6 +54,10 @@
   cursor: pointer;
   position: relative;
   border-radius: 5px;
+
+
+  filter: saturate(200%);
+  filter: contrast(200%);
 }
 
 .PokemonImage:hover {

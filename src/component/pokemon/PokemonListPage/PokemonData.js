@@ -50,9 +50,9 @@ const PokemonData = () => {
 
           const pokemonInfo = await GetPokemonData(pokemonName);
           const pokemonTypes = pokemonInfo.types.map((tipo) => tipo.type.name);
-          const pokemonImageUrl = pokemonInfo.sprites.front_default;
-          const pokemonImageUrl2 = pokemonInfo.sprites.front_shiny;
-
+          const pokemonImageUrl = pokemonInfo.sprites.other["official-artwork"].front_default;
+          const pokemonImageUrl2 = pokemonInfo.sprites.other["official-artwork"].front_shiny;
+console.log(pokemonImageUrl)
           const idPokemon = pokemonInfo.id;
 
           return [
@@ -93,7 +93,7 @@ const PokemonData = () => {
   );
 
 
-  
+
   return (
     <div className="boxAll">
       <div className="contentBox">
