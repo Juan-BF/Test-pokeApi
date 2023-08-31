@@ -6,6 +6,7 @@ import { faSearchengin } from '@fortawesome/free-brands-svg-icons';
 const Filters = ({ name, type, handleInputChange }) => {
   return (
     <div className="navigationBar">
+      <h3>FILTRAR POKEMON</h3>
       <div className="searchBox">
         <div className="boxSearch">
         <FontAwesomeIcon icon={faSearchengin} className="icono-personalizado" />

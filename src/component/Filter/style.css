@@ -1,31 +1,46 @@
-.searchBox{
-    display: flex;
-    justify-content: flex-end;
-    margin: 0 15px;
-    background-color: rgb(37, 40, 42);
-    width: 250px;
-    height: 50px;
+@import url("https://fonts.googleapis.com/css2?family=Rowdies:wght@300&family=Rubik:wght@400;500;700&family=Sora:wght@300;400&display=swap");
+
+.searchBox {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 2px;
+  background-color: rgb(37, 40, 42);
+  width: 250px;
+  height: 50px;
 }
-.boxSearch{
-    display: flex;
-    align-items: center;
-    margin: 0 9px;
-    
+.boxSearch {
+  display: flex;
+  align-items: center;
+  margin: 0 9px;
 }
-.inputSearch{
-    background-color: rgb(37, 40, 42);
-    width: 190px;
-    height: 30px;
+.inputSearch {
+  background-color: rgb(37, 40, 42);
+  width: 190px;
+  height: 30px;
 }
 .inputSearch:focus {
-    caret-color: rgb(252, 252, 252);
-    background-color: rgb(80, 80, 80);
-   
+  caret-color: rgb(252, 252, 252);
+  background-color: rgb(80, 80, 80);
 }
 .icono-personalizado {
-    font-size: 30px;
-    color: rgb(80, 80, 80);
-    margin: 0 12px;
-    
-    
-  }
+  font-size: 30px;
+  color: rgb(80, 80, 80);
+  margin: 0 12px;
+}
+.navigationBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: "Sora", sans-serif;
+  padding: 20px;
+  width: 1200px;
+  height: 72px;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.7),
+    rgba(94, 94, 94, 0.3)
+  );
+  border: 1px solid rgb(27, 27, 27);
+  border-radius: 6px;
+  color: #ffffff;
+}

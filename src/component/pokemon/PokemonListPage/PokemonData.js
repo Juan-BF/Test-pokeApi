@@ -52,7 +52,7 @@ const PokemonData = () => {
           const pokemonTypes = pokemonInfo.types.map((tipo) => tipo.type.name);
           const pokemonImageUrl = pokemonInfo.sprites.other["official-artwork"].front_default;
           const pokemonImageUrl2 = pokemonInfo.sprites.other["official-artwork"].front_shiny;
-console.log(pokemonImageUrl)
+
           const idPokemon = pokemonInfo.id;
 
           return [
@@ -92,10 +92,8 @@ console.log(pokemonImageUrl)
     Array(pokemonFilter.length).fill(false)
   );
 
-
-
   return (
-    <div className="boxAll">
+    <div className="boxAll blurred-background">
       <div className="contentBox">
         <h1 className="titleList">ELIGE A TU HÉROE</h1>
         <p className="descritionList">
@@ -113,13 +111,6 @@ console.log(pokemonImageUrl)
       />
       <PokemonListPage
         ResultFilter={pokemonFilter}
-        isHovered={isHovered}
-        setIsHovered={(index, value) => {
-          const updatedIsHovered = [isHovered];
-          updatedIsHovered[index] = value;
-          setIsHovered(updatedIsHovered);
-        }}
-        alternativeImageUrls={pokemon.pokemonDato.map((details) => details[4])}
       />
       <Button
         seeMore={seeMore}
