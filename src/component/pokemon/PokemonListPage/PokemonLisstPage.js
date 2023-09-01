@@ -1,34 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group"; 
 import "../PokemonListPage/stylolistapokemon.css";
 import "../../pokemon/reset.css";
 
-const PokemonListPage = ({
-  ResultFilter,
-}) => {
+const PokemonListPage = ({ ResultFilter }) => {
   return (
     <section>
-      <ul className="PokemonCards">
+      <TransitionGroup className="PokemonCards">
         {ResultFilter.map(([pokemonName, typeNames, imageUrl, id], index) => (
-          // className="cardsInformation"
-          <li  key={index}>
-            <Link to={`/${id}`}>
-              <div>
-                <img 
-                  className={`PokemonImage`}
-                  
-                  src={imageUrl}
-                  alt={`Pokemon ${pokemonName}`}
-                />
-              </div>
-            </Link>
-            {/* <p>{pokemonName}</p> */}
-            {/* <p>Tipo:</p> */}
-
-            {/* <spam> {typeNames.join(", ")}</spam> */}
-          </li>
+          <CSSTransition key={id} timeout={120} classNames="fade">
+            <li key={id}>
+              <Link to={`/${id}`}>
+                <div>
+                  <img
+                    className={`PokemonImage`}
+                    src={imageUrl}
+                    alt={`Pokemon ${pokemonName}`}
+                  />
+                </div>
+              </Link>
+            </li>
+          </CSSTransition>
         ))}
-      </ul>
+      </TransitionGroup>
     </section>
   );
 };
