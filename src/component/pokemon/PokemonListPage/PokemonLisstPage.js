@@ -12,12 +12,16 @@ const PokemonListPage = ({ ResultFilter }) => {
           <CSSTransition key={id} timeout={120} classNames="fade">
             <li key={id}>
               <Link to={`/${id}`}>
-                <div>
+                <div className="card">
                   <img
                     className={`PokemonImage`}
                     src={imageUrl}
                     alt={`Pokemon ${pokemonName}`}
                   />
+                 
+
+                  <h3>{pokemonName}</h3>
+                
                 </div>
               </Link>
             </li>
