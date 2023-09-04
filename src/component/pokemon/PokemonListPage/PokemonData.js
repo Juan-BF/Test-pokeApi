@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Filters from "../../Filter/InputFilter";
-import PokemonListPage from "./PokemonLisstPage";
+import PokemonListPage from "./pokemonList";
 import GetPokemonApi from "../service/GetPokemonApi";
 import GetPokemonData from "../service/GetPokemonData";
 import Button from "../../Button/Button";
+
+import  Themes  from "../Theme/Themes";
+
+import  { DivChange, DivInf, DivPokeInf}  from "./PokemonDataStyled"
+import { ThemeProvider } from "styled-components";
 
 const PokemonData = () => {
   const [pokemon, setPokemon] = useState({
@@ -50,9 +55,11 @@ const PokemonData = () => {
 
           const pokemonInfo = await GetPokemonData(pokemonName);
           const pokemonTypes = pokemonInfo.types.map((tipo) => tipo.type.name);
-          const pokemonImageUrl = pokemonInfo.sprites.other["official-artwork"].front_default;
-          const pokemonImageUrl2 = pokemonInfo.sprites.other["official-artwork"].front_shiny;
-
+          const pokemonImageUrl =
+            pokemonInfo.sprites.other["official-artwork"].front_default;
+          const pokemonImageUrl2 =
+            pokemonInfo.sprites.other["official-artwork"].front_shiny;
+          console.log(pokemonTypes[1]);
           const idPokemon = pokemonInfo.id;
 
           return [
@@ -72,6 +79,7 @@ const PokemonData = () => {
 
     fetchData();
   }, [quantity]);
+
   useEffect(() => {
     const filterdata = pokemon.pokemonDato.filter((pokemonData) => {
       const name = pokemonData[0].toLowerCase();
@@ -88,38 +96,58 @@ const PokemonData = () => {
     setPokemonFilter(filterdata);
   }, [pokemonName, pokemonTypes, pokemon.pokemonDato]);
 
-  const [isHovered, setIsHovered] = useState(
-    Array(pokemonFilter.length).fill(false)
-  );
+  // const [isHovered, setIsHovered] = useState(
+  //   Array(pokemonFilter.length).fill(false)
+  // );
+  const [theme, setTheme] = useState("dark"); // Estado inicial: "light"
+
+  const toggleTheme = () => {
+    // Cambia el tema en función del estado actual
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+
+  }
 
   return (
-    <div className="boxAll blurred-background">
-      <div className="contentBox">
-        <h1 className="titleList">ELIGE A TU HÉROE</h1>
-        <p className="descritionList">
-          Mentes estratégicas, criaturas formidables, intrépidos exploradores...
-          En el universo Pokémon, la diversidad es infinita. Desencadena
-          habilidades únicas y poderosos ataques en tu camino hacia el éxito
-          como Entrenador Pokémon. ¡Atrapa, entrena y compite para alcanzar la
-          cima!
-        </p>
-      </div>
-      <Filters
-        name={pokemonName}
-        type={pokemonTypes}
-        handleInputChange={handleInputChange}
-      />
-      <PokemonListPage
-        ResultFilter={pokemonFilter}
-      />
-      <Button
-        seeMore={seeMore}
-        showLess={showLess}
-        nameBtnMore="Ver Mas"
-        nameBtnLess="Ver Menos"
-      />
-    </div>
+    <ThemeProvider theme={Themes[theme]}>
+      <DivChange>
+          <label>
+          <input type="checkbox" id="toggleSwitch"
+           checked={theme === "dark"}
+           onChange={toggleTheme} 
+           />
+          <span></span>
+          </label>
+        </DivChange>
+      <DivPokeInf>
+        <DivInf>
+          <h1 className="titleList">ELIGE A TU HÉROE</h1>
+          <p className="descritionList">
+            Mentes estratégicas, criaturas formidables, intrépidos
+            exploradores... En el universo Pokémon, la diversidad es infinita.
+            Desencadena habilidades únicas y poderosos ataques en tu camino
+            hacia el éxito como Entrenador Pokémon. ¡Atrapa, entrena y compite
+            para alcanzar la cima!
+          </p>
+        </DivInf>
+        <Filters
+          name={pokemonName}
+          type={pokemonTypes}
+          handleInputChange={handleInputChange}
+        />
+        <PokemonListPage ResultFilter={pokemonFilter} />
+        <Button
+          seeMore={seeMore}
+          showLess={showLess}
+          nameBtnMore="Ver Mas"
+          nameBtnLess="Ver Menos"
+        />
+      </DivPokeInf>
+    </ThemeProvider>
   );
 };
 
-export { GetPokemonData as PokedexApi, GetPokemonApi, PokemonData };
+export { GetPokemonData as PokedexApi, GetPokemonApi, PokemonData }
