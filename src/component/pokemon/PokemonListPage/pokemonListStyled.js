@@ -22,13 +22,18 @@ const DivCards = styled.div`
   height: 175px;
   margin: 5px 4px 0;
   background-color: ${({ theme }) => theme.backgroundCard};
-
   transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: 1px 1px 4px #000;
   cursor: pointer;
   position: relative;
   border-radius: 5px;
   overflow: hidden;
+
+  & img{
+    width: 140px;
+  height: 140px;
+  }
+
 
   & p,
   & h3 {
@@ -42,9 +47,12 @@ const DivCards = styled.div`
     opacity: 0;
   }
   & p {
+    
     transform: translateY(77px);
   }
+  
   & h3 {
+    
     font-weight: 100;
     color: ${({ theme }) => theme.text};
     background-image: linear-gradient(

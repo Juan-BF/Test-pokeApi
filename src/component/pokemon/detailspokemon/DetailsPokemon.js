@@ -3,31 +3,30 @@ import GetPokemonData from "../service/GetPokemonData";
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../Button/Button";
-import "../detailspokemon/style.css"
+import "../detailspokemon/style.css";
+import { DivBig, DivPrim, DivInf, MovInf } from "./DetailsPokemonStyled";
 
 const PokemonDetail = () => {
   const { pokemonName } = useParams();
   const [PokemonDato, setPokemonDato] = useState({
-    idpokemon:1,
+    idpokemon: 1,
     imageUrl: "",
     typesDato: [],
     abilitisData: [],
     pokemonMoveName: [],
     pokemonNameUp: "",
-    imgdefault:""
-    
+    imgdefault: "",
   });
-console.log("gol")
+  console.log("gol");
   useEffect(() => {
     const fetchPokemon = async () => {
       const resultData = await GetPokemonData(pokemonName);
-      const { abilities, sprites, moves, types, name, id} = resultData;
-      const imagePokemon = sprites.other.dream_world.front_default
-      const imagepokemondefault = sprites.front_default
-      const sedimg = sprites.other.dream_world.front_default
-      console.log(sedimg)
+      const { abilities, sprites, moves, types, name, id } = resultData;
+      const imagePokemon = sprites.other.dream_world.front_default;
+      const imagepokemondefault = sprites.front_default;
+      const sedimg = sprites.other.dream_world.front_default;
+      console.log(sedimg);
       const Types = types.map((type) => type.type.name);
-
 
       const movesName = moves.map((move) => move.move.name);
       const detailsAbilites = await Promise.all(
@@ -40,8 +39,6 @@ console.log("gol")
           ).effect;
           return [name, descrition];
         })
-
-        
       );
 
       setPokemonDato({
@@ -51,76 +48,59 @@ console.log("gol")
         abilitisData: detailsAbilites,
         pokemonMoveName: movesName,
         pokemonNameUp: name,
-        imgdefault:imagepokemondefault
-       
+        imgdefault: imagepokemondefault,
       });
     };
     fetchPokemon();
   }, [pokemonName]);
 
-  console.log(PokemonDato.idpokemon );
- 
+  console.log(PokemonDato.idpokemon);
+
   const linkRef = useRef(null);
   const [numeroPokemon, setNumeroPokemon] = useState(Number(pokemonName));
 
   const handleSumaClick = () => {
-    setNumeroPokemon(prevNumero => (prevNumero >= 700 ? 1 : prevNumero + 1));
+    setNumeroPokemon((prevNumero) => (prevNumero >= 700 ? 1 : prevNumero + 1));
     linkRef.current.click();
   };
-  
+
   const handleRestaClick = () => {
-    setNumeroPokemon(prevNumero => (prevNumero <= 1 ? 700 : prevNumero - 1));
+    setNumeroPokemon((prevNumero) => (prevNumero <= 1 ? 700 : prevNumero - 1));
     linkRef.current.click();
   };
-  
 
   useEffect(() => {
     linkRef.current.click();
   }, [numeroPokemon]);
 
-  
-
-
-
-
-
-
-
-
-
-
-
   return (
-    
-    <div className="boxGeneral">
-      {/* <Link to={`/`}> Regresar </Link> */}
-    <div className="general">
-      {
-        <img
-        src={PokemonDato.imageUrl ? PokemonDato.imageUrl : PokemonDato.imgdefault}
-        alt={"imagen de " + PokemonDato.pokemonNameUp}
-        />
-      }
-      <div className="info">
-        
-      <h2>Detalles de {PokemonDato.pokemonNameUp}</h2>
-        <ul>
-          {PokemonDato.abilitisData.map(([name, description], index) => (
-            <li key={index}>
-              <p>Ability {name}:</p> <span>{description}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    <DivBig>
+      <DivPrim>
+        {
+          <img
+            src={
+              PokemonDato.imageUrl
+                ? PokemonDato.imageUrl
+                : PokemonDato.imgdefault
+            }
+            alt={"imagen de " + PokemonDato.pokemonNameUp}
+          />
+        }
+        <DivInf>
+          <h2>Detalles de {PokemonDato.pokemonNameUp}</h2>
+          <ul>
+            {PokemonDato.abilitisData.map(([name, description], index) => (
+              <li key={index}>
+                <p>Ability {name}:</p> <span>{description}</span>
+              </li>
+            ))}
+          </ul>
+        </DivInf>
+      </DivPrim>
 
-
-
-
-
-    <div>
-      <section className="infoMov">
-      <h2>{"Movimientos de" + PokemonDato.pokemonNameUp}</h2>
+      {/* <div> */}
+      <MovInf>
+        <h2>{"Movimientos de" + PokemonDato.pokemonNameUp}</h2>
         <ul className="movimientos">
           {PokemonDato.pokemonMoveName.map((inf, index) => {
             return (
@@ -130,24 +110,21 @@ console.log("gol")
             );
           })}
         </ul>
-      </section>
+      </MovInf>
 
-        <Link ref={linkRef} to={`/${numeroPokemon}`} >
-        
-      </Link>
-      <Button
-          nameBtnMore="Siguente"
-          nameBtnLess="Anterior"
-          seeMore={handleSumaClick}
-          showLess={handleRestaClick}
-          
-          />
-          
-    </div>
+      <Link ref={linkRef} to={`/${numeroPokemon}`}></Link>
+     
+        <Link to={`/`}> Regresari</Link>
     
-          </div>
+      <Button
+        nameBtnMore="Siguente"
+        nameBtnLess="Anterior"
+        seeMore={handleSumaClick}
+        showLess={handleRestaClick}
+      />
+      {/* </div> */}
+    </DivBig>
   );
 };
-
 
 export { PokemonDetail };

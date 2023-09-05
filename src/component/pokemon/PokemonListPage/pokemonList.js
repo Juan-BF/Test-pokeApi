@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Transition } from "react-transition-group";
-import "../PokemonListPage/stylolistapokemon.css";
-import { UlPokemonCards,DivCards } from "./pokemonListStyled";
+import { UlPokemonCards, DivCards } from "./PokemonListStyled";
 
 const PokemonListPage = ({ ResultFilter }) => {
   const typeColors = {
@@ -26,7 +24,6 @@ const PokemonListPage = ({ ResultFilter }) => {
     water: "rgba(15, 84, 237, 0.4)",
   };
 
-
   return (
     <section>
       <UlPokemonCards>
@@ -35,12 +32,9 @@ const PokemonListPage = ({ ResultFilter }) => {
             <Link to={`/${id}`}>
               <DivCards>
                 <h3>{pokemonName}</h3>
-                <img
-                  className={`PokemonImage`}
-                  src={imageUrl}
-                  alt={`Pokemon ${pokemonName}`}
-                />
-                <p className={"typeCard"} style={{
+                <img src={imageUrl} alt={`Pokemon-${pokemonName}`} />
+                <p
+                  style={{
                     backgroundColor: typeColors[typeNames[0]?.toLowerCase()],
                   }}
                 >

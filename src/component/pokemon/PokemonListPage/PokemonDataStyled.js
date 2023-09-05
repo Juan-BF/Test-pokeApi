@@ -49,6 +49,23 @@ const DivInf = styled.div`
   color: ${({ theme }) => theme.text};
   flex-direction: column;
   align-items: center;
+
+  & h1 {
+    font-family: "Rowdies", cursive;
+    display: flex;
+    justify-content: center;
+  }
+  & p {
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+    width: 50%;
+    padding: 5px 10px 25px;
+    font-family: "Sora", sans-serif;
+    font-weight: 400;
+    font-size: 1.1rem;
+    text-align: center;
+  }
 `;
 const DivPokeInf = styled.div`
   display: flex;

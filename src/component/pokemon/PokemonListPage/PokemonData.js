@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Filters from "../../Filter/InputFilter";
-import PokemonListPage from "./pokemonList";
+import PokemonListPage from "./PokemonList";
 import GetPokemonApi from "../service/GetPokemonApi";
 import GetPokemonData from "../service/GetPokemonData";
 import Button from "../../Button/Button";
@@ -124,8 +124,8 @@ const PokemonData = () => {
         </DivChange>
       <DivPokeInf>
         <DivInf>
-          <h1 className="titleList">ELIGE A TU HÉROE</h1>
-          <p className="descritionList">
+          <h1>ELIGE A TU HÉROE</h1>
+          <p>
             Mentes estratégicas, criaturas formidables, intrépidos
             exploradores... En el universo Pokémon, la diversidad es infinita.
             Desencadena habilidades únicas y poderosos ataques en tu camino
