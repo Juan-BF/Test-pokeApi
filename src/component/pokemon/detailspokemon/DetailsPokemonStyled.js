@@ -1,10 +1,11 @@
 import { styled } from "styled-components";
+import { Link } from "react-router-dom";
 
 const DivBig = styled.div`
   display: flex;
   position: fixed;
   width: 100%;
-  height: 100%;
+  height:100%;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -17,16 +18,25 @@ const DivBig = styled.div`
   background-size: cover;
   background-position: center center;
   overflow: auto;
+  
 
 
  
 `;
+
 const CustomLink = styled(Link)`
-  text-decoration: none;
-  color: blue;
-  font-weight: bold;
-  
-  /* Otros estilos personalizados aquí */
+    display: flex;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: rgba(53, 53, 53, 0.7);
+    font-weight: bold;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
 `;
 
 const DivPrim = styled.div`
@@ -76,4 +86,4 @@ const MovInf = styled.section`
   }
 `;
 
-export { DivBig, DivPrim, DivInf, MovInf };
+export { DivBig, DivPrim, DivInf, MovInf,CustomLink };

@@ -1,10 +1,12 @@
 import { useParams } from "react-router-dom";
 import GetPokemonData from "../service/GetPokemonData";
 import { useState, useEffect, useRef } from "react";
+import {DivChange} from "../PokemonListPage/";
 import { Link } from "react-router-dom";
 import Button from "../../Button/Button";
 import "../detailspokemon/style.css";
-import { DivBig, DivPrim, DivInf, MovInf } from "./DetailsPokemonStyled";
+import { DivBig, DivPrim, DivInf, MovInf,CustomLink } from "./DetailsPokemonStyled";
+
 
 const PokemonDetail = () => {
   const { pokemonName } = useParams();
@@ -75,6 +77,7 @@ const PokemonDetail = () => {
 
   return (
     <DivBig>
+      
       <DivPrim>
         {
           <img
@@ -101,7 +104,7 @@ const PokemonDetail = () => {
       {/* <div> */}
       <MovInf>
         <h2>{"Movimientos de" + PokemonDato.pokemonNameUp}</h2>
-        <ul className="movimientos">
+        <ul>
           {PokemonDato.pokemonMoveName.map((inf, index) => {
             return (
               <div key={index}>
@@ -114,7 +117,7 @@ const PokemonDetail = () => {
 
       <Link ref={linkRef} to={`/${numeroPokemon}`}></Link>
      
-        <Link to={`/`}> Regresari</Link>
+        <CustomLink to={`/`}> Regresar</CustomLink>
     
       <Button
         nameBtnMore="Siguente"

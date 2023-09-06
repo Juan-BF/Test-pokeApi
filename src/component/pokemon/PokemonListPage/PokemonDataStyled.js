@@ -45,7 +45,7 @@ const DivChange = styled.div`
 `;
 const DivInf = styled.div`
   display: flex;
-  margin-top: 100px;
+  margin-top: 50px;
   color: ${({ theme }) => theme.text};
   flex-direction: column;
   align-items: center;
@@ -69,6 +69,7 @@ const DivInf = styled.div`
 `;
 const DivPokeInf = styled.div`
   display: flex;
+  height: 100vh;
   padding: 0 100px;
   flex-direction: column;
   align-items: center;

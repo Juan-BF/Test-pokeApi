@@ -150,4 +150,4 @@ const PokemonData = () => {
   );
 };
 
-export { GetPokemonData as PokedexApi, GetPokemonApi, PokemonData }
+export { GetPokemonData as PokedexApi, GetPokemonApi, PokemonData,DivChange }

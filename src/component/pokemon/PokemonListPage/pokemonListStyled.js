@@ -6,7 +6,7 @@ const UlPokemonCards = styled.ul`
   justify-content: center;
   overflow: auto;
   width: 1400px;
-  height: 800px;
+  height: 59%;
   list-style: none;
   padding: 35px 100px;
   z-index: 1;

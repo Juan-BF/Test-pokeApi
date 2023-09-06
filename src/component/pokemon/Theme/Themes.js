@@ -10,7 +10,7 @@ const DarkTheme = {
 
 
 const LightTheme = {
-    backgroundCard: "(111, 109, 113)",
+    backgroundCard: "rgb(111, 109, 113)",
     text: "#000",
     shado: "#7F7F7F",
     linearGu:"rgba(255, 255, 255, 0.7)", 
