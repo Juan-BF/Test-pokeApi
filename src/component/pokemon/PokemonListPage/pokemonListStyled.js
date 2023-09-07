@@ -5,8 +5,8 @@ const UlPokemonCards = styled.ul`
   flex-direction: row;
   justify-content: center;
   overflow: auto;
-  width: 1400px;
-  height: 59%;
+  width: 100%;
+  height: 71%;
   list-style: none;
   padding: 35px 100px;
   z-index: 1;
@@ -37,6 +37,7 @@ const DivCards = styled.div`
 
   & p,
   & h3 {
+    
     border-radius: 5px;
     position: absolute;
     text-align: center;
@@ -45,6 +46,7 @@ const DivCards = styled.div`
     transition: transform 0.3s ease-in-out;
     width: 100%;
     opacity: 0;
+    /* font-size:5rem; */
   }
   & p {
     
@@ -85,7 +87,10 @@ const DivCards = styled.div`
     text-decoration: underline; /* Añade subrayado */
     text-decoration-color: rgb(125, 134, 134);
   }
-`;
+
+
+
+`
 
 ;
 export { UlPokemonCards, DivCards };

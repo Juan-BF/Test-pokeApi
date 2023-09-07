@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import GetPokemonData from "../service/GetPokemonData";
 import { useState, useEffect, useRef } from "react";
-import {DivChange} from "../PokemonListPage/";
+// import {DivChange} from "../PokemonListPage/PokemonListStyled";
 import { Link } from "react-router-dom";
 import Button from "../../Button/Button";
 import "../detailspokemon/style.css";

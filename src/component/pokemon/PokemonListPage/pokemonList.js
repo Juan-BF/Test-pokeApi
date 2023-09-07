@@ -27,9 +27,6 @@ const PokemonListPage = ({ ResultFilter }) => {
   return (
     // <section>
       <UlPokemonCards>
-
-
-        
         {ResultFilter.map(([pokemonName, typeNames, imageUrl, id], index) => (
           <li key={id}>
             <Link to={`/${id}`}>

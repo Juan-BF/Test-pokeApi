@@ -53,6 +53,7 @@ const DivInf = styled.div`
   & h1 {
     font-family: "Rowdies", cursive;
     display: flex;
+    margin: 10px 10px;
     justify-content: center;
   }
   & p {

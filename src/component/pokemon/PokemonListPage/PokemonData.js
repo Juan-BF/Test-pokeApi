@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Filters from "../../Filter/InputFilter";
-import PokemonListPage from "./PokemonList";
 import GetPokemonApi from "../service/GetPokemonApi";
 import GetPokemonData from "../service/GetPokemonData";
+import PokemonListPage from "../PokemonListPage/pokemonList";
 import Button from "../../Button/Button";
 
 import  Themes  from "../Theme/Themes";
@@ -124,14 +124,14 @@ const PokemonData = () => {
         </DivChange>
       <DivPokeInf>
         <DivInf>
-          <h1>ELIGE A TU HÉROE</h1>
-          <p>
+          <h1>ELIGE A TU POKEMON</h1>
+          {/* <p>
             Mentes estratégicas, criaturas formidables, intrépidos
             exploradores... En el universo Pokémon, la diversidad es infinita.
             Desencadena habilidades únicas y poderosos ataques en tu camino
             hacia el éxito como Entrenador Pokémon. ¡Atrapa, entrena y compite
             para alcanzar la cima!
-          </p>
+          </p> */}
         </DivInf>
         <Filters
           name={pokemonName}
