@@ -1,37 +1,24 @@
 import React from "react";
-import "../Filter/style.css"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearchengin } from '@fortawesome/free-brands-svg-icons';
+import { DivG, StyledFontAwesomeIcon,InputStyled,DivInp,SearchBox }from "./InputFilterStyled"
 
-const Filters = ({ name, type, handleInputChange }) => {
+const Filters = ({ name, handleInputChange }) => {
   return (
-    <div className="navigationBar">
+    <DivG>
       <h3>FILTRAR POKEMON</h3>
-      <div className="searchBox">
-        <div className="boxSearch">
-        <FontAwesomeIcon icon={faSearchengin} className="icono-personalizado" />
-          {/* <label htmlFor="name">Nombre del Pokemon</label> */}
-          <input
-          className="inputSearch"
+      <SearchBox>
+        <DivInp>
+        <StyledFontAwesomeIcon icon={faSearchengin}/>
+          <InputStyled
             type="text"
             id="name"
             name="name"
             onChange={handleInputChange}
             value={name}
           />
-        </div>
-        {/* <div>
-          <label htmlFor="type">Tipo de Pokemon </label>
-          <input
-            type="text"
-            id="type"
-            name="type"
-            onChange={handleInputChange}
-            value={type}
-          />
-        </div> */}
-      </div>
-    </div>
+        </DivInp>
+      </SearchBox>
+    </DivG>
   );
 };
 

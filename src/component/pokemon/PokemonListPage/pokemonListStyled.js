@@ -52,7 +52,17 @@ const DivCards = styled.div`
     
     transform: translateY(77px);
   }
-  
+  @media screen and (max-width: 800px) {
+    h3 {
+    opacity: 1;
+    transform: translateY(-75px);
+  }
+    p {
+    opacity: 1;
+    display: block;
+  }
+
+}
   & h3 {
     
     font-weight: 100;
@@ -67,7 +77,7 @@ const DivCards = styled.div`
     opacity: 1;
     transform: translateY(-75px);
   }
-  &:not(:hover) h3 {
+  :not(:hover) h3 {
     transform: translateY(-100px);
     opacity: 0.5;
     transition: transform 0.3s ease-in-out;
@@ -89,6 +99,8 @@ const DivCards = styled.div`
   }
 
 
+  
+  }
 
 `
 

@@ -5,9 +5,9 @@ import GetPokemonData from "../service/GetPokemonData";
 import PokemonListPage from "../PokemonListPage/pokemonList";
 import Button from "../../Button/Button";
 
-import  Themes  from "../Theme/Themes";
+import Themes from "../Theme/Themes";
 
-import  { DivChange, DivInf, DivPokeInf}  from "./PokemonDataStyled"
+import { DivChange, DivInf, DivPokeInf } from "./PokemonDataStyled";
 import { ThemeProvider } from "styled-components";
 
 const PokemonData = () => {
@@ -59,7 +59,6 @@ const PokemonData = () => {
             pokemonInfo.sprites.other["official-artwork"].front_default;
           const pokemonImageUrl2 =
             pokemonInfo.sprites.other["official-artwork"].front_shiny;
-          console.log(pokemonTypes[1]);
           const idPokemon = pokemonInfo.id;
 
           return [
@@ -96,42 +95,32 @@ const PokemonData = () => {
     setPokemonFilter(filterdata);
   }, [pokemonName, pokemonTypes, pokemon.pokemonDato]);
 
-  // const [isHovered, setIsHovered] = useState(
-  //   Array(pokemonFilter.length).fill(false)
-  // );
-  const [theme, setTheme] = useState("dark"); // Estado inicial: "light"
+  const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () => {
-    // Cambia el tema en función del estado actual
     if (theme === "light") {
       setTheme("dark");
     } else {
       setTheme("light");
     }
-
-  }
+  };
 
   return (
     <ThemeProvider theme={Themes[theme]}>
       <DivChange>
-          <label>
-          <input type="checkbox" id="toggleSwitch"
-           checked={theme === "dark"}
-           onChange={toggleTheme} 
-           />
+        <label>
+          <input
+            type="checkbox"
+            id="toggleSwitch"
+            checked={theme === "dark"}
+            onChange={toggleTheme}
+          />
           <span></span>
-          </label>
-        </DivChange>
+        </label>
+      </DivChange>
       <DivPokeInf>
         <DivInf>
           <h1>ELIGE A TU POKEMON</h1>
-          {/* <p>
-            Mentes estratégicas, criaturas formidables, intrépidos
-            exploradores... En el universo Pokémon, la diversidad es infinita.
-            Desencadena habilidades únicas y poderosos ataques en tu camino
-            hacia el éxito como Entrenador Pokémon. ¡Atrapa, entrena y compite
-            para alcanzar la cima!
-          </p> */}
         </DivInf>
         <Filters
           name={pokemonName}
@@ -150,4 +139,4 @@ const PokemonData = () => {
   );
 };
 
-export { GetPokemonData as PokedexApi, GetPokemonApi, PokemonData,DivChange }
+export { GetPokemonData as PokedexApi, GetPokemonApi, PokemonData, DivChange };

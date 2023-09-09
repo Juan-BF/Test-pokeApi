@@ -18,10 +18,6 @@ const DivBig = styled.div`
   background-size: cover;
   background-position: center center;
   overflow: auto;
-  
-
-
- 
 `;
 
 const CustomLink = styled(Link)`
@@ -64,7 +60,6 @@ const DivInf = styled.div`
 const MovInf = styled.section`
   display: flex;
   margin:0 40px;
-  /* width: 90%; */
   height:38%;
   flex-direction: column;
   justify-content: center;

@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import "../Button/style.css";
+import { BoxBtn,ButtonS } from "./ButtonStyled"
+
 
 const Button = ({ seeMore, showLess, nameBtnMore, nameBtnLess }) => {
   return (
-    <div className="btn">
-      <button className="btnList" type="button" onClick={seeMore}>
+    <BoxBtn>
+      <ButtonS type="button" onClick={seeMore}>
         {nameBtnMore}
-      </button>
+      </ButtonS>
       <br />
-      <button className="btnList" id="btnless" type="button" onClick={showLess}>
+      <ButtonS id="btnless" type="button" onClick={showLess}>
         {nameBtnLess}
-      </button>
-    </div>
+      </ButtonS>
+    </BoxBtn>
   );
 };
 

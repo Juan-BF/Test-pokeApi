@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { UlPokemonCards, DivCards } from "./PokemonListStyled";
+import { UlPokemonCards, DivCards } from "../PokemonListPage/PokemonListStyled";
 
 const PokemonListPage = ({ ResultFilter }) => {
   const typeColors = {
@@ -25,7 +25,6 @@ const PokemonListPage = ({ ResultFilter }) => {
   };
 
   return (
-    // <section>
       <UlPokemonCards>
         {ResultFilter.map(([pokemonName, typeNames, imageUrl, id], index) => (
           <li key={id}>
@@ -45,7 +44,6 @@ const PokemonListPage = ({ ResultFilter }) => {
           </li>
         ))}
       </UlPokemonCards>
-    // </section>
   );
 };
 

@@ -1,12 +1,15 @@
 import { useParams } from "react-router-dom";
 import GetPokemonData from "../service/GetPokemonData";
 import { useState, useEffect, useRef } from "react";
-// import {DivChange} from "../PokemonListPage/PokemonListStyled";
 import { Link } from "react-router-dom";
 import Button from "../../Button/Button";
-import "../detailspokemon/style.css";
-import { DivBig, DivPrim, DivInf, MovInf,CustomLink } from "./DetailsPokemonStyled";
-
+import {
+  DivBig,
+  DivPrim,
+  DivInf,
+  MovInf,
+  CustomLink,
+} from "./DetailsPokemonStyled";
 
 const PokemonDetail = () => {
   const { pokemonName } = useParams();
@@ -19,15 +22,12 @@ const PokemonDetail = () => {
     pokemonNameUp: "",
     imgdefault: "",
   });
-  console.log("gol");
   useEffect(() => {
     const fetchPokemon = async () => {
       const resultData = await GetPokemonData(pokemonName);
       const { abilities, sprites, moves, types, name, id } = resultData;
       const imagePokemon = sprites.other.dream_world.front_default;
       const imagepokemondefault = sprites.front_default;
-      const sedimg = sprites.other.dream_world.front_default;
-      console.log(sedimg);
       const Types = types.map((type) => type.type.name);
 
       const movesName = moves.map((move) => move.move.name);
@@ -77,7 +77,6 @@ const PokemonDetail = () => {
 
   return (
     <DivBig>
-      
       <DivPrim>
         {
           <img
@@ -100,8 +99,7 @@ const PokemonDetail = () => {
           </ul>
         </DivInf>
       </DivPrim>
-
-      {/* <div> */}
+      <CustomLink to={`/`}> Regresar</CustomLink>
       <MovInf>
         <h2>{"Movimientos de" + PokemonDato.pokemonNameUp}</h2>
         <ul>
@@ -114,11 +112,8 @@ const PokemonDetail = () => {
           })}
         </ul>
       </MovInf>
-
       <Link ref={linkRef} to={`/${numeroPokemon}`}></Link>
-     
-        <CustomLink to={`/`}> Regresar</CustomLink>
-    
+      
       <Button
         nameBtnMore="Siguente"
         nameBtnLess="Anterior"
