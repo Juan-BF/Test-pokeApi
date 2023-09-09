@@ -1,70 +1,90 @@
-# Getting Started with Create React App
+<div align="center">
+  <img src="pokedex-logo.png" alt="Logo de PokeDex Web App">
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# PokeDex Web App
 
-## Available Scripts
+Bienvenido a la PokeDex Web App, la guía definitiva para los amantes de los Pokémon. Esta aplicación web te permite explorar y aprender sobre todos los Pokémon conocidos, desde los clásicos hasta los más recientes. ¡Prepárate para una aventura Pokémon como ninguna otra!
 
-In the project directory, you can run:
+## 🚀 Tecnologías Utilizadas
 
-### `npm start`
+- **React**: La biblioteca de JavaScript para construir interfaces de usuario interactivas.
+- **HTML/CSS**: Para dar vida a la aplicación con una interfaz elegante.
+- **PokeAPI**: Una fuente de datos completa que proporciona información detallada sobre los Pokémon.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## ⚙️ Instalación
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Para comenzar a usar PokeDex Web App en tu entorno local, sigue estos simples pasos:
 
-### `npm test`
+1. Clona este repositorio:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+git clone https://github.com/tu-usuario/pokedex-web-app.git
+Navega al directorio del proyecto:
+bash
+Copy code
+cd pokedex-web-app
+Instala las dependencias:
+bash
+Copy code
+npm install
+Inicia la aplicación:
+bash
+Copy code
+npm start
+🧭 Cómo Usar
+Una vez que hayas instalado la aplicación, explora y aprende sobre Pokémon de la siguiente manera:
 
-### `npm run build`
+Página de inicio: Encuentra una lista de Pokémon con sus nombres y números. Haz clic en un Pokémon para obtener detalles.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Detalles del Pokémon: Descubre información completa sobre el Pokémon, incluyendo tipo, habilidades y estadísticas.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Búsqueda: Usa la barra de búsqueda para encontrar rápidamente un Pokémon por nombre o número.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Filtrado por Tipo: Filtra la lista de Pokémon por tipo para encontrar a tus favoritos.
 
-### `npm run eject`
+✨ Características Principales
+Explora una lista completa de Pokémon con detalles actualizados.
+Busca Pokémon por nombre o número.
+Filtra Pokémon por tipo para encontrar a tus favoritos.
+Interfaz de usuario amigable y fácil de usar.
+📂 Estructura del Proyecto
+La estructura de archivos y directorios en el proyecto se ve de la siguiente manera:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+java
+Copy code
+pokedex-web-app/
+│
+├── src/
+│   ├── components/
+│   │   ├── PokemonList.js
+│   │   ├── PokemonDetails.js
+│   │   ├── SearchBar.js
+│   │   └── ...
+│   ├── App.js
+│   └── ...
+│
+├── public/
+│   ├── index.html
+│   └── ...
+│
+├── package.json
+├── README.md
+└── ...
+👥 Contribución
+¡Tu contribución es bienvenida! Si deseas ayudar a mejorar PokeDex Web App, sigue estos pasos:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Abre un problema para discutir tu propuesta de contribución.
+Realiza un fork del repositorio y crea una rama para tu contribución.
+Trabaja en tu contribución y realiza cambios.
+Envía una solicitud de extracción.
+📜 Licencia
+Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para obtener más detalles.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+📧 Contacto
+Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto con nosotros:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Correo Electrónico: tucorreo@example.com
+Twitter: @PokeDexWebApp
+Sitio Web: https://www.pokedexwebapp.com
+¡Esperamos que disfrutes explorando el emocionante mundo de Pokémon con PokeDex Web App! ¡Atrapa 'em a todos!
