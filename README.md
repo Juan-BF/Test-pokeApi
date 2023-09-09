@@ -1,6 +1,3 @@
-<div align="center">
-  <img src="pokedex-logo.png" alt="Logo de PokeDex Web App">
-</div>
 
 # PokeDex Web App
 
