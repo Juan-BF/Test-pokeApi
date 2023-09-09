@@ -6,11 +6,24 @@
 
 Bienvenido a la PokeDex Web App, la guía definitiva para los amantes de los Pokémon. Esta aplicación web te permite explorar y aprender sobre todos los Pokémon conocidos, desde los clásicos hasta los más recientes. ¡Prepárate para una aventura Pokémon como ninguna otra!
 
-## 🚀 Tecnologías Utilizadas
+## 🚀  tecnologías y conceptos Utilizadas
 
-- **React**: La biblioteca de JavaScript para construir interfaces de usuario interactivas.
-- **HTML/CSS**: Para dar vida a la aplicación con una interfaz elegante.
-- **PokeAPI**: Una fuente de datos completa que proporciona información detallada sobre los Pokémon.
+**HTML**
+**CSS**
+**JavaScript**
+**React**
+**Responsive Design**
+**Control de Versiones (Git)**
+**Pruebas Unitarias**
+**Optimización de Carga y Rendimiento**
+**Integración con API (AJAX, Fetch)**
+**Single Page Application (SPA)**
+**Progressive Web App (PWA)**
+**Animaciones y Transiciones CSS**
+**Arquitecturas de Componentes**
+**Prácticas de Codificación (Linting)**
+**Frameworks CSS-in-JS (Styled-components, Emotion)**
+**Iconos SVG**
 
 ## ⚙️ Instalación
 
@@ -19,7 +32,7 @@ Para comenzar a usar PokeDex Web App en tu entorno local, sigue estos simples pa
 1. Clona este repositorio:
 
 ```bash
-git clone https://github.com/tu-usuario/pokedex-web-app.git
+git clone https://github.com/Juan-BF/Test-pokeApi.git
 Navega al directorio del proyecto:
 bash
 Copy code
@@ -48,29 +61,7 @@ Explora una lista completa de Pokémon con detalles actualizados.
 Busca Pokémon por nombre o número.
 Filtra Pokémon por tipo para encontrar a tus favoritos.
 Interfaz de usuario amigable y fácil de usar.
-📂 Estructura del Proyecto
-La estructura de archivos y directorios en el proyecto se ve de la siguiente manera:
 
-java
-Copy code
-pokedex-web-app/
-│
-├── src/
-│   ├── components/
-│   │   ├── PokemonList.js
-│   │   ├── PokemonDetails.js
-│   │   ├── SearchBar.js
-│   │   └── ...
-│   ├── App.js
-│   └── ...
-│
-├── public/
-│   ├── index.html
-│   └── ...
-│
-├── package.json
-├── README.md
-└── ...
 👥 Contribución
 ¡Tu contribución es bienvenida! Si deseas ayudar a mejorar PokeDex Web App, sigue estos pasos:
 
@@ -84,7 +75,4 @@ Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para obten
 📧 Contacto
 Si tienes alguna pregunta o sugerencia, no dudes en ponerte en contacto con nosotros:
 
-Correo Electrónico: tucorreo@example.com
-Twitter: @PokeDexWebApp
-Sitio Web: https://www.pokedexwebapp.com
 ¡Esperamos que disfrutes explorando el emocionante mundo de Pokémon con PokeDex Web App! ¡Atrapa 'em a todos!
