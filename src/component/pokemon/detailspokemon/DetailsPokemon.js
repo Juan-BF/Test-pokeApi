@@ -93,7 +93,7 @@ const PokemonDetail = () => {
           <ul>
             {PokemonDato.abilitisData.map(([name, description], index) => (
               <li key={index}>
-                <p>Ability {name}:</p> <span>{description}</span>
+                <p>Ability- {name}:</p> <span>{description}</span>
               </li>
             ))}
           </ul>
