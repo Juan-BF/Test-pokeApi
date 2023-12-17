@@ -48,18 +48,20 @@ const PokemonData = () => {
   useEffect(() => {
     const fetchData = async () => {
       const pokemonData = await GetPokemonApi(quantity);
-
+      // console.log(pokemonData)
       const pokemonDetails = await Promise.all(
         pokemonData.map(async (result) => {
           const pokemonName = result.name;
-
+          // console.log(pokemonName)
           const pokemonInfo = await GetPokemonData(pokemonName);
+
           const pokemonTypes = pokemonInfo.types.map((tipo) => tipo.type.name);
           const pokemonImageUrl =
             pokemonInfo.sprites.other["official-artwork"].front_default;
           const pokemonImageUrl2 =
             pokemonInfo.sprites.other["official-artwork"].front_shiny;
-          const idPokemon = pokemonInfo.id;
+          const idPokemon
+            = pokemonInfo.id;
 
           return [
             pokemonName,
@@ -75,6 +77,7 @@ const PokemonData = () => {
         pokemonDato: pokemonDetails,
       });
     };
+
 
     fetchData();
   }, [quantity]);
@@ -120,7 +123,7 @@ const PokemonData = () => {
       </DivChange>
       <DivPokeInf>
         <DivInf>
-          <h1>ELIGE A TU POKEMON</h1>
+          <h1>!ELIGE A TU POKEMON</h1>
         </DivInf>
         <Filters
           name={pokemonName}
